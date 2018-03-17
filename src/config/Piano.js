@@ -16,6 +16,8 @@ Oct	C	C#	D	D#	E	F	F#	G	G#	A	A#	B
 9	120	121	122	123	124	125	126	127
 */
 
+import notes from '../midi/data/notes';
+
 export const keyHeight = 30;
 export const crossWidthRatio = 2 / 3;
 export const crossHeightRatio = 2 / 3;
@@ -25,18 +27,14 @@ export const whites = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 export const blacks = ['C♯|D♭', 'D♯|E♭', 'F♯|G♭', 'G♯|A♭', 'A♯|B♭'];
 
 export const generateKeyboard = ({ startKey = 0, endKey = 127 } = {}) => {
-  return [
-    { key: 0, name: 'C', type: 'white', position: 0 },
-    { key: 1, name: 'C#|Db', type: 'black', position: 0 },
-    { key: 2, name: 'D', type: 'white', position: 1 },
-    { key: 3, name: 'D#|Eb', type: 'black', position: 1 },
-    { key: 4, name: 'E', type: 'white', position: 2 },
-    { key: 5, name: 'F', type: 'white', position: 3 },
-    { key: 6, name: 'F♯|G♭', type: 'black', position: 2 },
-    { key: 7, name: 'G', type: 'white', position: 4 },
-    { key: 8, name: 'G♯|A♭', type: 'black', position: 3 },
-    { key: 9, name: 'A', type: 'white', position: 5 },
-    { key: 10, name: 'A♯|B♭', type: 'black', position: 4 },
-    { key: 11, name: 'B', type: 'white', position: 6 }
-  ];
+  const keys = [];
+  for (let i = startKey; i <= endKey; i++) {
+    keys.push({
+      key: i,
+      name: notes[i].name,
+      type: notes[i].type,
+      position: notes[i].position
+    });
+  }
+  return keys;
 };
