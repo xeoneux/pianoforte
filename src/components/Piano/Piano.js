@@ -14,7 +14,7 @@ class Piano extends Component {
     return (
       <Div>
         {generateKeyboard().map((value, index) => (
-          <Key {...value} index={index} key={value.key}>
+          <Key {...value} index={index} key={value.key} active={false}>
             <Name>{value.name}</Name>
           </Key>
         ))}
@@ -27,11 +27,15 @@ const Key = Glamorous.div(
   {
     cursor: 'pointer',
     position: 'absolute',
+    boxSizing: 'border-box',
     border: '1px solid gray',
+    transition: 'all .2s ease',
     borderRadius: '0 0 5px 5px',
+    transformOrigin: 'top center',
+    transform: 'translate(0, 0) rotateX(0)',
     boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.3)'
   },
-  ({ type, index, position }) => ({
+  ({ type, index, active, position }) => ({
     left:
       type === 'white'
         ? `${position * keyWidth}vh`
@@ -39,6 +43,7 @@ const Key = Glamorous.div(
             (keyWidth - keyWidth * crossWidthRatio / 2)}vh`,
     zIndex: type === 'white' ? 90 : 100,
     background: type === 'white' ? 'white' : 'black',
+    transform: active ? 'rotateX(-1deg) scale(0.95)' : null,
     width:
       type === 'white' ? `${keyWidth}vh` : `${keyWidth * crossWidthRatio}vh`,
     height:
