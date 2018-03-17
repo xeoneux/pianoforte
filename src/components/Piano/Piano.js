@@ -45,7 +45,7 @@ const Key = glamorous.div(
     borderRadius: '0 0 5px 5px',
     boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.3)'
   },
-  ({ type = 'white', idx, pos }) => ({
+  ({ type, idx, pos }) => ({
     left:
       type === 'black'
         ? `${(idx - pos - 1) * keyWidth +

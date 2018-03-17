@@ -4508,6 +4508,10 @@ micromatch@^3.1.4, micromatch@^3.1.8:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+midi-player-js@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/midi-player-js/-/midi-player-js-2.0.3.tgz#b2c2c3d0bd6ccde2845b882675890dc70763adca"
+
 miller-rabin@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/miller-rabin/-/miller-rabin-4.0.1.tgz#f080351c865b0dc562a8462966daa53543c78a4d"
