@@ -18,13 +18,22 @@ const octave = [
   { type: 'white', name: whites[6], pos: 6 }
 ];
 
+const octaves = [...Array(7)].map((_, idx) =>
+  octave.map(key =>
+    Object.assign({}, key, {
+      name: key.name + idx,
+      pos: key.pos + idx * 7
+    })
+  )
+);
+
 class Piano extends Component {
   render() {
     return (
       <Div>
-        {octave.map((data, index) => (
-          <Key {...data} idx={index} key={data.name}>
-            <Name>{data.name}</Name>
+        {[].concat(...octaves).map((val, idx) => (
+          <Key {...val} idx={idx} key={val.name}>
+            <Name>{val.name}</Name>
           </Key>
         ))}
       </Div>
@@ -47,31 +56,31 @@ const Key = glamorous.div(
   },
   ({ type, idx, pos }) => ({
     left:
-      type === 'black'
-        ? `${(idx - pos - 1) * keyWidth +
-            (keyWidth - keyWidth * crossWidthRatio / 2)}vh`
-        : `${(idx - pos) * keyWidth}vh`,
-    zIndex: type === 'black' ? 100 : 90,
-    background: type === 'black' ? 'black' : 'white',
-    height:
-      type === 'black' ? `${keyHeight * crossHeightRatio}vh` : `${keyHeight}vh`,
+      type === 'white'
+        ? `${pos * keyWidth}vh`
+        : `${(idx - pos - 1) * keyWidth +
+            (keyWidth - keyWidth * crossWidthRatio / 2)}vh`,
+    zIndex: type === 'white' ? 90 : 100,
+    background: type === 'white' ? 'white' : 'black',
     width:
-      type === 'black' ? `${keyWidth * crossWidthRatio}vh` : `${keyWidth}vh`
+      type === 'white' ? `${keyWidth}vh` : `${keyWidth * crossWidthRatio}vh`,
+    height:
+      type === 'white' ? `${keyHeight}vh` : `${keyHeight * crossHeightRatio}vh`
   })
 );
 
 const Name = glamorous.div({
-  position: 'absolute',
-  bottom: 0,
   left: 0,
+  bottom: 0,
+  opacity: 0.8,
+  color: 'gray',
   width: '16px',
   height: '16px',
-  lineHeight: '16px',
-  textAlign: 'center',
-  color: 'gray',
   fontSize: '10px',
+  lineHeight: '16px',
   fontWeight: 'bold',
-  opacity: 0.8
+  textAlign: 'center',
+  position: 'absolute'
 });
 
 export default Piano;
