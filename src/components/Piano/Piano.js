@@ -1,4 +1,4 @@
-import glamorous, { Div } from 'glamorous';
+import Glamorous, { Div } from 'glamorous';
 import React, { Component } from 'react';
 
 const whites = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
@@ -18,11 +18,34 @@ const octave = [
   { type: 'white', name: whites[6], pos: 6 }
 ];
 
-const octaves = [...Array(7)].map((_, idx) =>
-  octave.map(key =>
+// TODO: Refactor in helper...
+const generatePos = idx => {
+  const pattern = ['w', 'b', 'w', 'b', 'w', 'w', 'b', 'w', 'b', 'w', 'b', 'w'];
+  let quotient = Math.floor(idx / pattern.length);
+  let remainder = idx % pattern.length;
+
+  if (remainder === 0) {
+    quotient = quotient - 1;
+    remainder = pattern.length;
+  }
+  const key = pattern[remainder - 1];
+
+  let pre;
+  if (key === 'w') pre = quotient * whites.length;
+  if (key === 'b') pre = quotient * blacks.length;
+
+  let count = 0;
+  pattern.forEach((note, index) => {
+    if (note === key && index < remainder) count++;
+  });
+  return pre + count;
+};
+
+const octaves = [...Array(7)].map((_, num) =>
+  octave.map((key, idx) =>
     Object.assign({}, key, {
-      name: key.name + idx,
-      pos: key.pos + idx * 7
+      name: key.name + num,
+      pos: generatePos(idx + 1 + num * 7) - 1
     })
   )
 );
@@ -46,7 +69,7 @@ const keyWidth = keyHeight / 4;
 const crossHeightRatio = 0.75;
 const crossWidthRatio = 0.66;
 
-const Key = glamorous.div(
+const Key = Glamorous.div(
   {
     cursor: 'pointer',
     position: 'absolute',
@@ -69,7 +92,7 @@ const Key = glamorous.div(
   })
 );
 
-const Name = glamorous.div({
+const Name = Glamorous.div({
   left: 0,
   bottom: 0,
   opacity: 0.8,
