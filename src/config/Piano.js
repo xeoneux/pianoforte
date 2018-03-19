@@ -1,5 +1,4 @@
 /*
-
 MIDI Standard for Note Numbers
 
 Oct	C	C#	D	D#	E	F	F#	G	G#	A	A#	B
@@ -16,12 +15,13 @@ Oct	C	C#	D	D#	E	F	F#	G	G#	A	A#	B
 9	120	121	122	123	124	125	126	127
 */
 
+import { footerHeight } from './app';
 import notes from '../midi/data/notes';
 
-export const keyHeight = 30;
+export const keyHeight = footerHeight;
 export const crossWidthRatio = 2 / 3;
 export const crossHeightRatio = 2 / 3;
-export const keyWidth = keyHeight / 7;
+export const keyWidth = keyHeight / 6;
 
 export const whites = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 export const blacks = ['C♯|D♭', 'D♯|E♭', 'F♯|G♭', 'G♯|A♭', 'A♯|B♭'];

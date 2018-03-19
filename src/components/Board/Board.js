@@ -1,6 +1,7 @@
 import Glamorous, { Div } from 'glamorous';
 import React, { Component } from 'react';
 
+import { contentHeight } from '../../config/app';
 import { keyWidth } from '../../config/piano';
 
 class Board extends Component {
@@ -23,7 +24,7 @@ const Background = Glamorous.div({
 const FatLine = props => (
   <Div
     left={`calc(${props.count * 7 * keyWidth}vh - 1px)`}
-    height="55vh"
+    height={`${contentHeight}vh`}
     position="absolute"
     borderLeft="2px solid #5A5A5A"
   />
@@ -32,7 +33,7 @@ const FatLine = props => (
 const ThinLine = props => (
   <Div
     left={`${props.count * 7 * keyWidth + 3 * keyWidth}vh`}
-    height="55vh"
+    height={`${contentHeight}vh`}
     position="absolute"
     borderLeft="1px solid #5A5A5A"
   />
