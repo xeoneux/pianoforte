@@ -16,7 +16,7 @@ Oct	C	C#	D	D#	E	F	F#	G	G#	A	A#	B
 */
 
 import { footerHeight } from './app';
-import notes from '../midi/data/notes';
+import notes from '../midi/notes';
 
 export const keyHeight = footerHeight;
 export const crossWidthRatio = 2 / 3;

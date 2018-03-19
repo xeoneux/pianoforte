@@ -5,8 +5,6 @@ SoundFontPlayer.instrument(new AudioContext(), 'marimba').then(marimba => {
   marimba.play('C4');
 });
 
-const midiPlayer = new MidiPlayer.Player(event => {
+export const midiPlayer = new MidiPlayer.Player(event => {
   console.log(event);
 });
-
-export default midiPlayer;

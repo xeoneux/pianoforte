@@ -6,15 +6,15 @@ import { headerHeight, contentHeight, footerHeight } from './config/app';
 
 import Piano from './components/Piano/Piano';
 import Board from './components/Board/Board';
-import Player from './midi/Player';
+import { midiPlayer } from './audio/player';
 
 class App extends Component {
   onDrop(acceptedFiles, rejectedFiles) {
     if (acceptedFiles.length) {
       const reader = new FileReader();
       reader.onload = () => {
-        Player.loadArrayBuffer(reader.result);
-        Player.play();
+        midiPlayer.loadArrayBuffer(reader.result);
+        midiPlayer.play();
       };
       reader.onabort = () => console.log('file reading was aborted');
       reader.onerror = () => console.log('file reading has failed');
