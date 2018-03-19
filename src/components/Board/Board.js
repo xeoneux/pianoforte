@@ -1,14 +1,14 @@
 import Glamorous, { Div } from 'glamorous';
 import React, { Component } from 'react';
 
-import { keyWidth } from '../../config/Piano';
+import { keyWidth } from '../../config/piano';
 
 class Board extends Component {
   render() {
     return (
       <Background>
         {[...Array(6)].map((_, i) => <FatLine count={i + 1} />)}
-        {[...Array(6)].map((_, i) => <ThinLine count={i} />)}
+        {[...Array(7)].map((_, i) => <ThinLine count={i} />)}
       </Background>
     );
   }

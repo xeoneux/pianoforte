@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Div } from 'glamorous';
 
-import './App.css';
+import { headerHeight, contentHeight, footerHeight } from './config/app';
 
 import Piano from './components/Piano/Piano';
 import Board from './components/Board/Board';
@@ -8,16 +9,16 @@ import Board from './components/Board/Board';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <h1>Header</h1>
-        </div>
-        <div className="App-content">
+      <div>
+        <Div height={`${headerHeight}vh`}>
+          <Div display="flex">Header</Div>
+        </Div>
+        <Div height={`${contentHeight}vh`}>
           <Board />
-        </div>
-        <div className="App-footer">
+        </Div>
+        <Div height={`${footerHeight}vh`}>
           <Piano />
-        </div>
+        </Div>
       </div>
     );
   }

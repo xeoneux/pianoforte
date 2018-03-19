@@ -7,12 +7,12 @@ import {
   crossWidthRatio,
   crossHeightRatio,
   generateKeyboard
-} from '../../config/Piano';
+} from '../../config/piano';
 
 class Piano extends Component {
   render() {
     return (
-      <Div>
+      <Div display="flex">
         {generateKeyboard({ startKey: 24, endKey: 106 }).map((value, index) => (
           <Key {...value} index={index} key={value.key} active={false}>
             <Name>{value.name}</Name>
