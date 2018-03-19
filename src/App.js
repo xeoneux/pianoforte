@@ -6,10 +6,21 @@ import { headerHeight, contentHeight, footerHeight } from './config/app';
 
 import Piano from './components/Piano/Piano';
 import Board from './components/Board/Board';
+import Player from './midi/Player';
 
 class App extends Component {
   onDrop(acceptedFiles, rejectedFiles) {
-    console.log(acceptedFiles, rejectedFiles);
+    if (acceptedFiles.length) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        Player.loadArrayBuffer(reader.result);
+        Player.play();
+      };
+      reader.onabort = () => console.log('file reading was aborted');
+      reader.onerror = () => console.log('file reading has failed');
+
+      reader.readAsArrayBuffer(acceptedFiles[0]);
+    }
   }
 
   render() {
