@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Piano from './components/Piano/Piano';
+import Board from './components/Board/Board';
 
 class App extends Component {
   render() {
@@ -12,7 +13,7 @@ class App extends Component {
           <h1>Header</h1>
         </div>
         <div className="App-content">
-          <h1>Content</h1>
+          <Board />
         </div>
         <div className="App-footer">
           <Piano />
