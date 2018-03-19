@@ -1,4 +1,4 @@
-import Glamorous, { Div } from 'glamorous';
+import Glamorous from 'glamorous';
 import React, { Component } from 'react';
 
 import { contentHeight } from '../../config/app';
