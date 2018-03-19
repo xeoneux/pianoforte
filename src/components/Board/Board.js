@@ -5,11 +5,15 @@ import { contentHeight } from '../../config/app';
 import { keyWidth } from '../../config/piano';
 
 class Board extends Component {
+  state = { markerPercentage: 25 };
+
   render() {
     return (
       <Background>
-        {[...Array(6)].map((_, i) => <Line key={i} count={i + 1} />)}
-        {[...Array(7)].map((_, i) => <Line key={i} type="thin" count={i} />)}
+        {[...Array(7)].map((_, i) => <Line key={i} count={i + 1} />)}
+        {[...Array(8)].map((_, i) => <Line key={i} type="thin" count={i} />)}
+        <Marker type="odd" percentage={this.state.markerPercentage} />
+        <Marker type="even" percentage={this.state.markerPercentage} />
       </Background>
     );
   }
@@ -29,6 +33,13 @@ const Line = Glamorous.div(
         ? `${count * 7 * keyWidth + 3 * keyWidth}vh`
         : `calc(${count * 7 * keyWidth}vh - 1px)`,
     borderLeft: type === 'thin' ? '1px solid #5A5A5A' : '2px solid #5A5A5A'
+  })
+);
+
+const Marker = Glamorous.div(
+  { position: 'relative', borderTop: '1px solid #5A5A5A' },
+  ({ type, percentage }) => ({
+    top: type === 'even' ? `${percentage}%` : `${percentage + 66}%`
   })
 );
 

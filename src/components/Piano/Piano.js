@@ -13,7 +13,7 @@ class Piano extends Component {
   render() {
     return (
       <Div display="flex">
-        {generateKeyboard({ startKey: 24, endKey: 106 }).map((value, index) => (
+        {generateKeyboard({ startKey: 24, endKey: 114 }).map((value, index) => (
           <Key {...value} index={index} key={value.key} active={false}>
             <Name>{value.name}</Name>
           </Key>
