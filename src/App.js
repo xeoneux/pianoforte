@@ -2,20 +2,18 @@ import { Div } from 'glamorous';
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 
-import { headerHeight, contentHeight, footerHeight } from './config/app';
-
-import Piano from './components/Piano/Piano';
+import AppBar from './components/AppBar/AppBar';
 import Board from './components/Board/Board';
+import Piano from './components/Piano/Piano';
+
 import { midiPlayer } from './audio/player';
+import { headerHeight, contentHeight, footerHeight } from './config/app';
 
 class App extends Component {
   onDrop(acceptedFiles, rejectedFiles) {
     if (acceptedFiles.length) {
       const reader = new FileReader();
-      reader.onload = () => {
-        midiPlayer.loadArrayBuffer(reader.result);
-        midiPlayer.play();
-      };
+      reader.onload = () => midiPlayer.loadArrayBuffer(reader.result);
       reader.onabort = () => console.log('file reading was aborted');
       reader.onerror = () => console.log('file reading has failed');
 
@@ -27,7 +25,7 @@ class App extends Component {
     return (
       <div>
         <Div height={`${headerHeight}vh`}>
-          <Div display="flex">Header</Div>
+          <AppBar />
         </Div>
         <Div height={`${contentHeight}vh`}>
           <Dropzone
