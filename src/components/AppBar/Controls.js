@@ -17,14 +17,25 @@ FontAwesome.library.add(faStepBackward);
 export default class Controls extends Component {
   render() {
     return (
-      <Div height="50%" display="flex" justifyContent="center">
+      <Div
+        height="50%"
+        display="flex"
+        alignItems="center"
+        backgroundColor="#107EB5"
+        justifyContent="space-around"
+      >
         {[
           'fas fa-play',
           'fas fa-pause',
           'fas fa-step-forward',
           'fas fa-step-backward'
         ].map((c, i) => (
-          <I key={i} className={c} fontSize={`${headerHeight / 3}vh`} />
+          <I
+            key={i}
+            className={c}
+            color="white"
+            fontSize={`${headerHeight / 3}vh`}
+          />
         ))}
       </Div>
     );

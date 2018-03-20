@@ -10,6 +10,7 @@
     "glamor": "^2.20.40",
     "glamorous": "^4.12.1",
     "midi-player-js": "^2.0.3",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-dropzone": "^4.2.9",
