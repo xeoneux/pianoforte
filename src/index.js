@@ -1,8 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider, Subscribe } from 'unstated';
+
 import './index.css';
+
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const AppContainer = () => (
+  <Provider>
+    <Subscribe to={[]}>{() => <App />}</Subscribe>
+  </Provider>
+);
+
+ReactDOM.render(<AppContainer />, document.getElementById('root'));
 registerServiceWorker();

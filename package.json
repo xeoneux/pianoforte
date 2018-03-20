@@ -14,7 +14,8 @@
     "react-dom": "^16.2.0",
     "react-dropzone": "^4.2.9",
     "react-scripts": "1.1.1",
-    "soundfont-player": "^0.10.6"
+    "soundfont-player": "^0.10.6",
+    "unstated": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

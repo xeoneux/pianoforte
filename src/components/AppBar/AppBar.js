@@ -9,7 +9,7 @@ import { headerHeight } from '../../config/app';
 export default class AppBar extends Component {
   render() {
     return (
-      <Div display="flex" height="100%" width="100%">
+      <Div width="100%" height="100%" display="flex" flexDirection="column">
         <Controls />
         <Div display="flex" height={`${headerHeight / 2}vh`}>
           <Progress />
