@@ -9,17 +9,27 @@ import {
 } from '../../../config/piano';
 
 export default class Key extends Component {
-  state = { active: false };
-
   handleClick = () => {
-    this.setState({ active: !this.state.active });
+    this.props.store.activate(this.props.value);
   };
+
+  componentDidMount() {
+    this.setState(this.props.store.state);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (!this.state) return true;
+    return (
+      this.state[this.props.value].active !==
+      nextProps.store.state[nextProps.value].active
+    );
+  }
 
   render() {
     return (
       <StyledKey
         {...this.props}
-        active={this.state.active}
+        active={this.props.store.state[this.props.value].active}
         onClick={this.handleClick}
       >
         <StyledName>{this.props.name}</StyledName>
@@ -48,7 +58,7 @@ const StyledKey = Glamorous.div(
             (keyWidth - keyWidth * crossWidthRatio / 2)}vh`,
     zIndex: type === 'white' ? 90 : 100,
     background: type === 'white' ? 'white' : 'black',
-    transform: active ? 'rotateX(-1deg) scale(0.95)' : null,
+    transform: active === true ? 'rotateX(-1deg) scale(0.95)' : null,
     width:
       type === 'white' ? `${keyWidth}vh` : `${keyWidth * crossWidthRatio}vh`,
     height:
