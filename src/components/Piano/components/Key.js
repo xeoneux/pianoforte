@@ -9,29 +9,9 @@ import {
 } from '../../../config/piano';
 
 export default class Key extends Component {
-  handleClick = () => {
-    this.props.store.activate(this.props.value);
-  };
-
-  componentDidMount() {
-    this.setState(this.props.store.state);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (!this.state) return true;
-    return (
-      this.state[this.props.value].active !==
-      nextProps.store.state[nextProps.value].active
-    );
-  }
-
   render() {
     return (
-      <StyledKey
-        {...this.props}
-        active={this.props.store.state[this.props.value].active}
-        onClick={this.handleClick}
-      >
+      <StyledKey {...this.props}>
         <StyledName>{this.props.name}</StyledName>
       </StyledKey>
     );

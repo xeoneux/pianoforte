@@ -30,7 +30,7 @@ export const generateKeyboard = ({ startKey = 0, endKey = 127 } = {}) => {
   const keys = [];
   for (let i = startKey; i <= endKey; i++) {
     keys.push({
-      key: i,
+      note: i,
       name: notes[i].name === 'C' ? `C${notes[i].octave}` : null,
       type: notes[i].type,
       position: notes[i - startKey].position
