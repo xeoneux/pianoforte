@@ -1,10 +1,19 @@
 import MidiPlayer from 'midi-player-js';
 import SoundFontPlayer from 'soundfont-player';
 
-SoundFontPlayer.instrument(new AudioContext(), 'marimba').then(marimba => {
-  marimba.play('C4');
-});
+let piano;
+
+SoundFontPlayer.instrument(new AudioContext(), 'acoustic_grand_piano').then(
+  marimba => {
+    piano = marimba;
+    window.navigator.requestMIDIAccess().then(midiAccess => {
+      midiAccess.inputs.forEach(midiInput => {
+        piano.listenToMidi(midiInput);
+      });
+    });
+  }
+);
 
 export const midiPlayer = new MidiPlayer.Player(event => {
-  console.log(event);
+  piano.play(event.noteName);
 });

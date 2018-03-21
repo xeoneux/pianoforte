@@ -9,12 +9,23 @@ import faStepBackward from '@fortawesome/fontawesome-free-solid/faStepBackward';
 
 import { headerHeight } from '../../config/app';
 
+import { midiPlayer } from '../../audio/player';
+
 FontAwesome.library.add(faPlay);
 FontAwesome.library.add(faPause);
 FontAwesome.library.add(faStepForward);
 FontAwesome.library.add(faStepBackward);
 
 export default class Controls extends Component {
+  handleClick = event => {
+    if (event.currentTarget) {
+      midiPlayer.play();
+      midiPlayer.on('playing', currentTick => {
+        console.log(currentTick);
+      });
+    }
+  };
+
   render() {
     return (
       <Div
@@ -22,6 +33,7 @@ export default class Controls extends Component {
         display="flex"
         alignItems="center"
         backgroundColor="#107EB5"
+        onClick={this.handleClick}
         justifyContent="space-around"
       >
         {[

@@ -2,12 +2,12 @@ import { Div } from 'glamorous';
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 
-import AppBar from './components/AppBar/AppBar';
-import Board from './components/Board/Board';
-import Piano from './components/Piano/Piano';
+import AppBar from './AppBar/AppBar';
+import Board from './Board/Board';
+import Piano from './Piano/Piano';
 
-import { midiPlayer } from './audio/player';
-import { headerHeight, contentHeight, footerHeight } from './config/app';
+import { midiPlayer } from '../audio/player';
+import { headerHeight, contentHeight, footerHeight } from '../config/app';
 
 class App extends Component {
   onDrop(acceptedFiles, rejectedFiles) {
