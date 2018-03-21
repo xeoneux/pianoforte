@@ -7,19 +7,25 @@ import Board from './Board/Board';
 import Piano from './Piano/Piano';
 
 import { midiPlayer } from '../audio/player';
+import { getKeyRange } from '../config/midi';
 import { headerHeight, contentHeight, footerHeight } from '../config/app';
 
 class App extends Component {
-  onDrop(acceptedFiles, rejectedFiles) {
+  setupEnvironment(result) {
+    midiPlayer.loadArrayBuffer(result);
+    getKeyRange(midiPlayer.getEvents());
+  }
+
+  onDrop = (acceptedFiles, rejectedFiles) => {
     if (acceptedFiles.length) {
       const reader = new FileReader();
-      reader.onload = () => midiPlayer.loadArrayBuffer(reader.result);
+      reader.onload = () => this.setupEnvironment(reader.result);
       reader.onabort = () => console.log('file reading was aborted');
       reader.onerror = () => console.log('file reading has failed');
 
       reader.readAsArrayBuffer(acceptedFiles[0]);
     }
-  }
+  };
 
   render() {
     return (
