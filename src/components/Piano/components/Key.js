@@ -9,13 +9,22 @@ import {
 } from '../../../config/piano';
 
 export default class Key extends PureComponent {
-  handleClick = () => {
+  handleMouseUp = () => {
+    this.props.store.toggle(this.props.note, false);
+  };
+
+  handleMouseDown = () => {
     this.props.store.toggle(this.props.note, true);
   };
 
   render() {
     return (
-      <StyledKey {...this.props} onClick={this.handleClick}>
+      <StyledKey
+        {...this.props}
+        onMouseUp={this.handleMouseUp}
+        onMouseLeave={this.handleMouseUp}
+        onMouseDown={this.handleMouseDown}
+      >
         <StyledName>{this.props.name}</StyledName>
       </StyledKey>
     );
