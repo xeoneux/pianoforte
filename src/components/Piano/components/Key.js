@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Glamorous from 'glamorous';
 
 import {
@@ -8,10 +8,14 @@ import {
   crossHeightRatio
 } from '../../../config/piano';
 
-export default class Key extends Component {
+export default class Key extends PureComponent {
+  handleClick = () => {
+    this.props.store.toggle(this.props.note, true);
+  };
+
   render() {
     return (
-      <StyledKey {...this.props}>
+      <StyledKey {...this.props} onClick={this.handleClick}>
         <StyledName>{this.props.name}</StyledName>
       </StyledKey>
     );
