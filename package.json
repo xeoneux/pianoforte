@@ -1,12 +1,13 @@
 {
   "name": "pianoforte",
   "version": "0.1.0",
-  "private": true,
+  "homepage": "https://xeoneux.github.io/pianoforte",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.4",
     "@fortawesome/fontawesome-free-brands": "^5.0.8",
     "@fortawesome/fontawesome-free-regular": "^5.0.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.8",
+    "gh-pages": "^1.1.0",
     "glamor": "^2.20.40",
     "glamorous": "^4.12.1",
     "midi-player-js": "^2.0.3",
@@ -18,6 +19,8 @@
     "unstated": "^1.1.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
