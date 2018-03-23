@@ -7,9 +7,9 @@ import faPause from '@fortawesome/fontawesome-free-solid/faPause';
 import faStepForward from '@fortawesome/fontawesome-free-solid/faStepForward';
 import faStepBackward from '@fortawesome/fontawesome-free-solid/faStepBackward';
 
-import { headerHeight } from '../../config/app';
-
-import { midiPlayer } from '../../audio/player';
+import { headerHeight } from '../../../config/app';
+import { midiPlayer } from '../../../audio/player';
+import { appContainer } from '../../../containers/app';
 
 FontAwesome.library.add(faPlay);
 FontAwesome.library.add(faPause);
@@ -21,7 +21,9 @@ export default class Controls extends Component {
     if (event.currentTarget) {
       midiPlayer.play();
       midiPlayer.on('playing', currentTick => {
-        console.log(currentTick);
+        appContainer.setState({
+          currentTime: midiPlayer.getSongTimeRemaining()
+        });
       });
     }
   };

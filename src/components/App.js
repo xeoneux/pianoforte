@@ -5,6 +5,7 @@ import Dropzone from 'react-dropzone';
 import AppBar from './AppBar/AppBar';
 import Board from './Board/Board';
 import Piano from './Piano/Piano';
+import { appContainer } from '../containers/app';
 
 import { midiPlayer } from '../audio/player';
 import { getKeyRange } from '../config/midi';
@@ -14,6 +15,11 @@ class App extends Component {
   setupEnvironment(result) {
     midiPlayer.loadArrayBuffer(result);
     getKeyRange(midiPlayer.getEvents());
+
+    appContainer.setState({
+      totalTime: midiPlayer.getSongTime(),
+      totalTicks: midiPlayer.getTotalTicks()
+    });
   }
 
   onDrop = (acceptedFiles, rejectedFiles) => {
