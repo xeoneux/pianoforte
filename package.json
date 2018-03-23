@@ -9,6 +9,10 @@
   "main": "public/electron.js",
   "homepage": "./",
   "description": "A web based MIDI player",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xeoneux/pianoforte.git"
+  },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.4",
     "@fortawesome/fontawesome-free-brands": "^5.0.8",
@@ -31,8 +35,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "preelectron": "yarn build",
-    "electron": "build"
+    "prerelease": "yarn build",
+    "release": "build -mwl"
   },
   "devDependencies": {
     "electron": "^1.8.4",

@@ -6,6 +6,8 @@ import { pianoContainer } from '../containers/piano';
 
 let piano;
 
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+
 SoundFontPlayer.instrument(new AudioContext(), 'acoustic_grand_piano').then(
   marimba => {
     piano = marimba;
