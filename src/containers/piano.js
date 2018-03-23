@@ -14,3 +14,5 @@ export default class PianoContainer extends Container {
     });
   }
 }
+
+export const pianoContainer = new PianoContainer();

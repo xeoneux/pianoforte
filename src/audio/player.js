@@ -1,6 +1,9 @@
 import MidiPlayer from 'midi-player-js';
 import SoundFontPlayer from 'soundfont-player';
 
+import { appContainer } from '../containers/app';
+import { pianoContainer } from '../containers/piano';
+
 let piano;
 
 SoundFontPlayer.instrument(new AudioContext(), 'acoustic_grand_piano').then(
@@ -15,5 +18,15 @@ SoundFontPlayer.instrument(new AudioContext(), 'acoustic_grand_piano').then(
 );
 
 export const midiPlayer = new MidiPlayer.Player(event => {
-  piano.play(event.noteName);
+  if (event.name === 'Note on') {
+    piano.play(event.noteNumber);
+    pianoContainer.toggle(event.noteNumber, true);
+  }
+  if (event.name === 'Note off') {
+    // piano.stop(event.noteNumber);
+    pianoContainer.toggle(event.noteNumber, false);
+  }
+  appContainer.setState({
+    currentTime: midiPlayer.getSongTimeRemaining()
+  });
 });

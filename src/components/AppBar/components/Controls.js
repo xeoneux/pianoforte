@@ -9,7 +9,6 @@ import faStepBackward from '@fortawesome/fontawesome-free-solid/faStepBackward';
 
 import { headerHeight } from '../../../config/app';
 import { midiPlayer } from '../../../audio/player';
-import { appContainer } from '../../../containers/app';
 
 FontAwesome.library.add(faPlay);
 FontAwesome.library.add(faPause);
@@ -20,11 +19,6 @@ export default class Controls extends Component {
   handleClick = event => {
     if (event.currentTarget) {
       midiPlayer.play();
-      midiPlayer.on('playing', currentTick => {
-        appContainer.setState({
-          currentTime: midiPlayer.getSongTimeRemaining()
-        });
-      });
     }
   };
 

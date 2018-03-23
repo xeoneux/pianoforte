@@ -37,7 +37,7 @@ const StyledKey = Glamorous.div(
     position: 'absolute',
     boxSizing: 'border-box',
     border: '1px solid gray',
-    transition: 'all .2s ease',
+    transition: 'all .1s ease',
     borderRadius: '0 0 5px 5px',
     transformOrigin: 'top center',
     transform: 'translate(0, 0) rotateX(0)',
@@ -50,7 +50,10 @@ const StyledKey = Glamorous.div(
         : `${(index - position - 1) * keyWidth +
             (keyWidth - keyWidth * crossWidthRatio / 2)}vh`,
     zIndex: type === 'white' ? 90 : 100,
-    background: type === 'white' ? 'white' : 'black',
+    background:
+      active === true
+        ? type === 'white' ? 'black' : 'white'
+        : type === 'white' ? 'white' : 'black',
     transform: active === true ? 'rotateX(-1deg) scale(0.95)' : null,
     width:
       type === 'white' ? `${keyWidth}vh` : `${keyWidth * crossWidthRatio}vh`,
