@@ -1,43 +1,38 @@
-import React, { Component } from 'react';
 import Glamorous, { Div } from 'glamorous';
-import { Subscribe } from 'unstated';
-
-import AppContainer from '../../../containers/app';
-
-const measures = 40;
+import React, { Component } from 'react';
 
 export default class Progress extends Component {
   render() {
     return (
-      <Subscribe to={[AppContainer]}>
-        {app => (
-          <Div height="50%" display="flex">
-            <Time type="current">{app.state.currentTime}</Time>
-            {[...Array(measures)].map((_, i) => <Block key={i} />)}
-            <Time type="total">{app.state.totalTime}</Time>
-          </Div>
-        )}
-      </Subscribe>
+      <Div height="50%" display="flex">
+        <Time type="current">{this.props.state.currentTime}</Time>
+        {[...Array(this.props.state.measures)].map((_, i) => (
+          <Block key={i} measures={this.props.state.measures} />
+        ))}
+        <Time type="total">{this.props.state.totalTime}</Time>
+      </Div>
     );
   }
 }
 
-const Block = Glamorous.div({
-  zIndex: 50,
-  height: '100%',
-  border: '1px solid',
-  borderRadius: '1px',
-  backgroundColor: '#303030',
-  width: `${100 / measures}vw`,
-  boxShadow: 'inset 0 1px rgba(255, 255, 255, 0.4)',
-  backgroundImage: `linear-gradient(
+const Block = Glamorous.div(
+  {
+    zIndex: 50,
+    height: '100%',
+    border: '1px solid',
+    borderRadius: '1px',
+    backgroundColor: '#303030',
+    boxShadow: 'inset 0 1px rgba(255, 255, 255, 0.4)',
+    backgroundImage: `linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.3),
       rgba(255, 255, 255, 0) 50%,
       rgba(0, 0, 0, 0.12) 51%,
       rgba(0, 0, 0, 0.04)
     )`
-});
+  },
+  ({ measures }) => ({ width: `${100 / measures}vw` })
+);
 
 const Time = Glamorous.div(
   {

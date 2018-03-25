@@ -16,9 +16,13 @@ class App extends Component {
     midiPlayer.loadArrayBuffer(result);
     getKeyRange(midiPlayer.getEvents());
 
+    const ppq = midiPlayer.division * 4;
+    const measures = midiPlayer.totalTicks / ppq;
+
     appContainer.setState({
-      totalTime: midiPlayer.getSongTime(),
-      totalTicks: midiPlayer.getTotalTicks()
+      measures: Math.ceil(measures),
+      totalTicks: midiPlayer.totalTicks,
+      totalTime: midiPlayer.getSongTime()
     });
   }
 
