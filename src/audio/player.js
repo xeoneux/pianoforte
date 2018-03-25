@@ -31,7 +31,5 @@ export const midiPlayer = new MidiPlayer.Player(event => {
     // piano.stop(event.noteNumber);
     pianoContainer.toggle(event.noteNumber, false);
   }
-  appContainer.setState({
-    currentTime: midiPlayer.getSongTimeRemaining()
-  });
+  appContainer.setTimeUsing(midiPlayer);
 });

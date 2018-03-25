@@ -20,6 +20,7 @@ class App extends Component {
     const measures = midiPlayer.totalTicks / ppq;
 
     appContainer.setState({
+      division: midiPlayer.division,
       measures: Math.ceil(measures),
       totalTicks: midiPlayer.totalTicks,
       totalTime: midiPlayer.getSongTime()

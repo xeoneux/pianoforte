@@ -1,13 +1,13 @@
 import Glamorous, { Div } from 'glamorous';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-export default class Progress extends Component {
+export default class Progress extends PureComponent {
   render() {
     return (
       <Div height="50%" display="flex">
         <Time type="current">{this.props.state.currentTime}</Time>
         {[...Array(this.props.state.measures)].map((_, i) => (
-          <Block key={i} measures={this.props.state.measures} />
+          <Block key={i} index={i} state={this.props.state} />
         ))}
         <Time type="total">{this.props.state.totalTime}</Time>
       </Div>
@@ -22,16 +22,35 @@ const Block = Glamorous.div(
     border: '1px solid',
     borderRadius: '1px',
     backgroundColor: '#303030',
-    boxShadow: 'inset 0 1px rgba(255, 255, 255, 0.4)',
-    backgroundImage: `linear-gradient(
+    boxShadow: 'inset 0 1px rgba(255, 255, 255, 0.4)'
+  },
+  ({ index, state }) => {
+    let percentage = 0;
+    if (state.currentMeasure > index) percentage = 100;
+    else if (state.currentMeasure === index)
+      percentage = ~~(
+        (state.currentTick - state.currentMeasure * (state.division * 4)) /
+        (state.division * 4) *
+        100
+      );
+
+    return {
+      width: `${100 / state.measures}vw`,
+      backgroundImage: `linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.3),
       rgba(255, 255, 255, 0) 50%,
       rgba(0, 0, 0, 0.12) 51%,
       rgba(0, 0, 0, 0.04)
+    ), linear-gradient(
+      to right,
+      rgba(0, 255, 0, 1),
+      rgba(0, 255, 0, 1) ${percentage}%,
+      rgba(0, 0, 0, 0) ${percentage}%,
+      rgba(0, 0, 0, 0)
     )`
-  },
-  ({ measures }) => ({ width: `${100 / measures}vw` })
+    };
+  }
 );
 
 const Time = Glamorous.div(
