@@ -1,4 +1,4 @@
-import instruments from '../midi/instruments';
+import instruments from '../resources/instruments';
 
 export const getInstrumentName = channel => {
   if (channel === 0) return instruments[1];
