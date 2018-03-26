@@ -1,5 +1,4 @@
 export const midiNotesMap = player => {
-  const ticks = player.totalTicks;
   const division = player.division;
   const measure = division * 4;
 
@@ -12,8 +11,9 @@ export const midiNotesMap = player => {
 
     trackData.forEach(event => {
       const currentMeasure = Math.floor(event.tick / (measure + 1));
+      if (!data[trackIndex][currentMeasure])
+        data[trackIndex][currentMeasure] = {};
       const selectedMeasure = data[trackIndex][currentMeasure];
-      if (!selectedMeasure) selectedMeasure = {};
 
       if (event.name === 'Note on' && event.velocity !== 0) {
         if (!selectedMeasure[event.noteNumber])
@@ -33,5 +33,6 @@ export const midiNotesMap = player => {
     });
   });
 
+  console.log(data);
   return data;
 };

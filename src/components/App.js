@@ -10,6 +10,7 @@ import { appContainer } from '../containers/app';
 import { midiPlayer } from '../audio/player';
 import { getKeyRange } from '../config/midi';
 import { headerHeight, contentHeight, footerHeight } from '../config/app';
+import { midiNotesMap } from '../tools/midi';
 
 class App extends Component {
   setupEnvironment(result) {
@@ -23,7 +24,8 @@ class App extends Component {
       division: midiPlayer.division,
       measures: Math.ceil(measures),
       totalTicks: midiPlayer.totalTicks,
-      totalTime: midiPlayer.getSongTime()
+      totalTime: midiPlayer.getSongTime(),
+      notesMap: midiNotesMap(midiPlayer)
     });
   }
 

@@ -1,7 +1,9 @@
 import Glamorous from 'glamorous';
 import React, { Component } from 'react';
+import { Subscribe } from 'unstated';
 
 import Marker from './components/Marker';
+import AppContainer from '../../containers/app';
 
 import { contentHeight } from '../../config/app';
 import { keyWidth } from '../../config/piano';
@@ -9,11 +11,17 @@ import { keyWidth } from '../../config/piano';
 class Board extends Component {
   render() {
     return (
-      <Background>
-        {[...Array(7)].map((_, i) => <Line key={i} count={i + 1} />)}
-        {[...Array(8)].map((_, i) => <Line key={i} type="thin" count={i} />)}
-        <Marker />
-      </Background>
+      <Subscribe to={[AppContainer]}>
+        {app => (
+          <Background>
+            {[...Array(7)].map((_, i) => <Line key={i} count={i + 1} />)}
+            {[...Array(8)].map((_, i) => (
+              <Line key={i} type="thin" count={i} />
+            ))}
+            <Marker />
+          </Background>
+        )}
+      </Subscribe>
     );
   }
 }

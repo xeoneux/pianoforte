@@ -3,7 +3,7 @@ import { Container } from 'unstated';
 import { generateKeyboard } from '../config/piano';
 
 export default class PianoContainer extends Container {
-  state = { keyboard: generateKeyboard({ startKey: 24, endKey: 107 }) };
+  state = { keyboard: generateKeyboard({ startKey: 24, endKey: 113 }) };
 
   toggle(note, active) {
     this.setState({
