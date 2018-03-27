@@ -18,6 +18,7 @@ export default class Piano extends Component {
                 store={piano}
                 key={value.note}
                 active={value.active}
+                keyboard={piano.state.keyboard}
               />
             ))}
           </Div>
