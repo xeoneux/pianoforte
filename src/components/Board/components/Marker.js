@@ -1,29 +1,25 @@
 import Glamorous, { Div } from 'glamorous';
 import React, { Component } from 'react';
-import { Subscribe } from 'unstated';
-
-import AppContainer from '../../../containers/app';
 
 export default class Marker extends Component {
   state = { currentBar: 0, markerPercentage: 25 };
 
   render() {
     return (
-      <Subscribe to={[AppContainer]}>
-        {app => (
-          <Div width="100%" height="100%" position="absolute">
-            <StyledRain percentage={app.state.markerPercentage}>
-              Let It Rain
-            </StyledRain>
-            <StyledMarker type="odd" percentage={app.state.markerPercentage}>
-              <StyledBar>{this.state.currentBar}</StyledBar>
-            </StyledMarker>
-            {/* <StyledMarker type="even" percentage={app.state.markerPercentage}>
+      <Div width="100%" height="100%" position="absolute">
+        <StyledRain percentage={this.props.app.state.markerPercentage}>
+          Let It Rain
+        </StyledRain>
+        <StyledMarker
+          type="odd"
+          percentage={this.props.app.state.markerPercentage}
+        >
+          <StyledBar>{this.state.currentBar}</StyledBar>
+        </StyledMarker>
+        {/* <StyledMarker type="even" percentage={app.state.markerPercentage}>
               <StyledBar>{this.state.currentBar + 1}</StyledBar>
             </StyledMarker> */}
-          </Div>
-        )}
-      </Subscribe>
+      </Div>
     );
   }
 }

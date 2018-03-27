@@ -9,10 +9,11 @@ import { appContainer } from '../containers/app';
 
 import { midiPlayer } from '../audio/player';
 import { getKeyRange } from '../config/midi';
-import { headerHeight, contentHeight, footerHeight } from '../config/app';
 import { midiNotesMap } from '../tools/midi';
+import { headerHeight, contentHeight, footerHeight } from '../config/app';
+import { midiContainer } from '../containers/midi';
 
-class App extends Component {
+export default class App extends Component {
   setupEnvironment(result) {
     midiPlayer.loadArrayBuffer(result);
     getKeyRange(midiPlayer.getEvents());
@@ -20,9 +21,14 @@ class App extends Component {
     const ppq = midiPlayer.division * 4;
     const measures = midiPlayer.totalTicks / ppq;
 
-    appContainer.setState({
-      division: midiPlayer.division,
+    midiContainer.setState({
+      absoluteMeasures: measures,
       measures: Math.ceil(measures),
+      division: midiPlayer.division,
+      notesMap: midiNotesMap(midiPlayer)
+    });
+
+    appContainer.setState({
       totalTicks: midiPlayer.totalTicks,
       totalTime: midiPlayer.getSongTime(),
       notesMap: midiNotesMap(midiPlayer)
@@ -62,5 +68,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

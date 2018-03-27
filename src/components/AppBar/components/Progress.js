@@ -5,11 +5,11 @@ export default class Progress extends PureComponent {
   render() {
     return (
       <Div height="50%" display="flex">
-        <Time type="current">{this.props.state.currentTime}</Time>
-        {[...Array(this.props.state.measures)].map((_, i) => (
-          <Block key={i} index={i} state={this.props.state} />
+        <Time type="current">{this.props.app.state.currentTime}</Time>
+        {[...Array(this.props.midi.state.measures)].map((_, i) => (
+          <Block key={i} index={i} state={this.props.app.state} />
         ))}
-        <Time type="total">{this.props.state.totalTime}</Time>
+        <Time type="total">{this.props.app.state.totalTime}</Time>
       </Div>
     );
   }
