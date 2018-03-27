@@ -18,8 +18,8 @@ export default class Piano extends Component {
                 index={index}
                 store={piano}
                 key={value.note}
+                keyWidth={keyboard.state.keyWidth}
                 active={piano.state.keyboard[index].active}
-                keyWidth={100 / keyboard.state.whites.length}
               />
             ))}
           </Div>

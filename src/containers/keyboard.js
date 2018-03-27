@@ -9,6 +9,7 @@ const keyboardState = type => {
     keys: keyboard.keys,
     blacks: keyboard.blackKeys,
     whites: keyboard.whiteKeys,
+    keyWidth: 100 / keyboard.whiteKeys.length,
     preLines: keyboard.whiteKeys.filter(key => key === 'F').length,
     postLines: keyboard.whiteKeys.filter(key => key === 'C').length
   };

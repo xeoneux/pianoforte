@@ -16,7 +16,7 @@ export default class Background extends Component {
           <Line
             key={i}
             count={i + 1}
-            keyWidth={100 / this.props.keyboard.state.whites.length}
+            keyWidth={this.props.keyboard.state.keyWidth}
           />
         ))}
         {[...Array(this.props.keyboard.state.postLines)].map((_, i) => (
@@ -24,7 +24,7 @@ export default class Background extends Component {
             thin
             key={i}
             count={i}
-            keyWidth={100 / this.props.keyboard.state.whites.length}
+            keyWidth={this.props.keyboard.state.keyWidth}
           />
         ))}
       </Div>
