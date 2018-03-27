@@ -4,14 +4,8 @@ import React, { Component } from 'react';
 import Key from './components/Key';
 
 export default class Piano extends Component {
-  setKeyWidth() {
-    const keyboard = this.props.piano.state.keyboard;
-    const whiteKeys = keyboard.filter(key => key.type === 'white');
-    this.setState({ keyWidth: 100 / whiteKeys.length });
-  }
-
-  componentWillMount() {
-    this.setKeyWidth();
+  get keyWidth() {
+    return 100 / this.props.piano.state.whiteKeys.length;
   }
 
   render() {
@@ -21,10 +15,10 @@ export default class Piano extends Component {
           <Key
             {...value}
             index={index}
-            store={this.props.piano}
             key={value.note}
             active={value.active}
-            keyWidth={this.state.keyWidth}
+            store={this.props.piano}
+            keyWidth={this.keyWidth}
           />
         ))}
       </Div>

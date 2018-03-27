@@ -2,8 +2,14 @@ import { Container } from 'unstated';
 
 import { generateKeyboard, keyboardTypes } from '../tools/piano';
 
+const keyboard = generateKeyboard(keyboardTypes.$61);
+
 export default class PianoContainer extends Container {
-  state = { keyboard: generateKeyboard(keyboardTypes.$88) };
+  state = {
+    keyboard: keyboard.keys,
+    blackKeys: keyboard.blackKeys,
+    whiteKeys: keyboard.whiteKeys
+  };
 
   toggle(note, active) {
     this.setState({

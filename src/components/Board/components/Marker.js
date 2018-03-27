@@ -11,7 +11,7 @@ export default class Marker extends Component {
     return (
       <Subscribe to={[AppContainer]}>
         {app => (
-          <Div width="100%" height="100%" position="relative">
+          <Div width="100%" height="100%" position="absolute">
             <StyledRain percentage={app.state.markerPercentage}>
               Let It Rain
             </StyledRain>

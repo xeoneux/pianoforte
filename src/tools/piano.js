@@ -27,7 +27,7 @@ const generateKeyboard = ({ startKey = 0, endKey = 127 } = {}) => {
     });
   }
 
-  return keys;
+  return { keys, blackKeys, whiteKeys };
 };
 
 export { notes, keyboardTypes, generateKeyboard };
