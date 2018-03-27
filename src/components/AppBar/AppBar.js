@@ -4,7 +4,7 @@ import { Subscribe } from 'unstated';
 
 import Controls from './components/Controls';
 import Progress from './components/Progress';
-import AppContainer from '../../containers/app';
+import PlayerContainer from '../../containers/player';
 import MidiContainer from '../../containers/midi';
 
 export default class AppBar extends Component {
@@ -17,7 +17,7 @@ export default class AppBar extends Component {
         position="relative"
         flexDirection="column"
       >
-        <Subscribe to={[AppContainer]}>
+        <Subscribe to={[PlayerContainer]}>
           {app => (
             <Fragment>
               <Controls {...app} />

@@ -1,6 +1,6 @@
 import { Container } from 'unstated';
 
-export default class AppContainer extends Container {
+export default class PlayerContainer extends Container {
   state = {
     division: 0,
     measures: 1,
@@ -24,4 +24,4 @@ export default class AppContainer extends Container {
   }
 }
 
-export const appContainer = new AppContainer();
+export const playerContainer = new PlayerContainer();

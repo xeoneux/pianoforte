@@ -5,13 +5,13 @@ import { Provider } from 'unstated';
 import './index.css';
 
 import App from './components/App';
-import { appContainer } from './containers/app';
+import { playerContainer } from './containers/player';
 import { pianoContainer } from './containers/piano';
 import { keyboardContainer } from './containers/keyboard';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-  <Provider inject={[appContainer, pianoContainer, keyboardContainer]}>
+  <Provider inject={[playerContainer, pianoContainer, keyboardContainer]}>
     <App />
   </Provider>,
   document.getElementById('root')

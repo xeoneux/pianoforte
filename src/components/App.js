@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 import AppBar from './AppBar/AppBar';
 import Board from './Board/Board';
 import Piano from './Piano/Piano';
-import { appContainer } from '../containers/app';
+import { playerContainer } from '../containers/player';
 
 import { midiPlayer } from '../audio/player';
 import { getKeyRange } from '../config/midi';
@@ -28,7 +28,7 @@ export default class App extends Component {
       notesMap: midiNotesMap(midiPlayer)
     });
 
-    appContainer.setState({
+    playerContainer.setState({
       totalTicks: midiPlayer.totalTicks,
       totalTime: midiPlayer.getSongTime(),
       notesMap: midiNotesMap(midiPlayer)

@@ -1,7 +1,7 @@
 import MidiPlayer from 'midi-player-js';
 import SoundFontPlayer from 'soundfont-player';
 
-import { appContainer } from '../containers/app';
+import { playerContainer } from '../containers/player';
 import { pianoContainer } from '../containers/piano';
 
 let piano;
@@ -31,5 +31,5 @@ export const midiPlayer = new MidiPlayer.Player(event => {
     // piano.stop(event.noteNumber);
     pianoContainer.toggle(event.noteNumber, false);
   }
-  appContainer.setTimeUsing(midiPlayer);
+  playerContainer.setTimeUsing(midiPlayer);
 });
