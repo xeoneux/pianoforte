@@ -1,9 +1,11 @@
 import { Container } from 'unstated';
 
 import { generateKeyboard, keyboardTypes } from '../tools/keyboard';
+import { pianoContainer } from './piano';
 
 const keyboardState = type => {
   const keyboard = generateKeyboard(type);
+  pianoContainer.setupKeyStates(type);
   return {
     type,
     keys: keyboard.keys,
