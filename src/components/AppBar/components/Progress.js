@@ -1,13 +1,18 @@
 import Glamorous, { Div } from 'glamorous';
-import React, { PureComponent } from 'react';
+import React, { Component, PureComponent } from 'react';
 
-export default class Progress extends PureComponent {
+export default class Progress extends Component {
   render() {
     return (
       <Div height="50%" display="flex">
         <Time type="current">{this.props.player.state.currentTime}</Time>
         {[...Array(this.props.midi.state.measures)].map((_, i) => (
-          <Block key={i} index={i} state={this.props.player.state} />
+          <Block
+            key={i}
+            index={i}
+            midi={this.props.midi.state}
+            player={this.props.player.state}
+          />
         ))}
         <Time type="total">{this.props.player.state.totalTime}</Time>
       </Div>
@@ -15,7 +20,14 @@ export default class Progress extends PureComponent {
   }
 }
 
-const Block = Glamorous.div(
+class Block extends PureComponent {
+  // TODO: Performance check for component update
+  render() {
+    return <StyledBlock {...this.props} />;
+  }
+}
+
+const StyledBlock = Glamorous.div(
   {
     zIndex: 50,
     height: '100%',
@@ -24,18 +36,18 @@ const Block = Glamorous.div(
     backgroundColor: '#303030',
     boxShadow: 'inset 0 1px rgba(255, 255, 255, 0.4)'
   },
-  ({ index, state }) => {
+  ({ midi, index, player }) => {
     let percentage = 0;
-    if (state.currentMeasure > index) percentage = 100;
-    else if (state.currentMeasure === index)
+    if (player.currentMeasure > index) percentage = 100;
+    else if (player.currentMeasure === index)
       percentage = ~~(
-        (state.currentTick - state.currentMeasure * (state.division * 4)) /
-        (state.division * 4) *
+        (player.currentTick - player.currentMeasure * (midi.division * 4)) /
+        (midi.division * 4) *
         100
       );
 
     return {
-      width: `${100 / state.measures}vw`,
+      width: `${100 / midi.measures}vw`,
       backgroundImage: `linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.3),
