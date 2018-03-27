@@ -15,7 +15,7 @@ const keyboardState = type => {
 };
 
 export default class KeyboardContainer extends Container {
-  state = keyboardState(keyboardTypes.$61);
+  state = keyboardState(keyboardTypes.$88);
 
   set keyboardType(type) {
     this.setState(...keyboardState(type));

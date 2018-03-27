@@ -2,7 +2,7 @@ import { Container } from 'unstated';
 
 import { generateKeyboard, keyboardTypes } from '../tools/keyboard';
 
-const keyboard = generateKeyboard(keyboardTypes.$61);
+const keyboard = generateKeyboard(keyboardTypes.$88);
 
 export default class PianoContainer extends Container {
   state = {

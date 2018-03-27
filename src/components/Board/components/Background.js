@@ -21,8 +21,8 @@ export default class Background extends Component {
         ))}
         {[...Array(this.props.keyboard.state.postLines)].map((_, i) => (
           <Line
-            key={i}
             thin
+            key={i}
             count={i}
             keyWidth={100 / this.props.keyboard.state.whites.length}
           />

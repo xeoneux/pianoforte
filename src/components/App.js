@@ -1,7 +1,6 @@
 import { Div } from 'glamorous';
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
-import { Subscribe } from 'unstated';
 
 import AppBar from './AppBar/AppBar';
 import Board from './Board/Board';
@@ -12,7 +11,6 @@ import { midiPlayer } from '../audio/player';
 import { getKeyRange } from '../config/midi';
 import { headerHeight, contentHeight, footerHeight } from '../config/app';
 import { midiNotesMap } from '../tools/midi';
-import PianoContainer from '../containers/piano';
 
 class App extends Component {
   setupEnvironment(result) {
@@ -52,15 +50,13 @@ class App extends Component {
           <Dropzone
             disableClick
             onDrop={this.onDrop}
-            style={{ width: '100%', height: '100%' }}
+            style={{ width: '100%', height: '100%', position: 'relative' }}
           >
             <Board />
           </Dropzone>
         </Div>
         <Div height={`${footerHeight}vh`}>
-          <Subscribe to={[PianoContainer]}>
-            {piano => <Piano piano={piano} />}
-          </Subscribe>
+          <Piano />
         </Div>
       </div>
     );

@@ -1,27 +1,30 @@
 import { Div } from 'glamorous';
 import React, { Component } from 'react';
+import { Subscribe } from 'unstated';
 
 import Key from './components/Key';
+import PianoContainer from '../../containers/piano';
+import KeyboardContainer from '../../containers/keyboard';
 
 export default class Piano extends Component {
-  get keyWidth() {
-    return 100 / this.props.piano.state.whiteKeys.length;
-  }
-
   render() {
     return (
-      <Div display="flex">
-        {this.props.piano.state.keyboard.map((value, index) => (
-          <Key
-            {...value}
-            index={index}
-            key={value.note}
-            active={value.active}
-            store={this.props.piano}
-            keyWidth={this.keyWidth}
-          />
-        ))}
-      </Div>
+      <Subscribe to={[PianoContainer, KeyboardContainer]}>
+        {(piano, keyboard) => (
+          <Div display="flex">
+            {keyboard.state.keys.map((value, index) => (
+              <Key
+                {...value}
+                index={index}
+                store={piano}
+                key={value.note}
+                active={piano.state.keyboard[index].active}
+                keyWidth={100 / keyboard.state.whites.length}
+              />
+            ))}
+          </Div>
+        )}
+      </Subscribe>
     );
   }
 }

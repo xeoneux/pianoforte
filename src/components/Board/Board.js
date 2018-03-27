@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Subscribe } from 'unstated';
 
 import Marker from './components/Marker';
@@ -9,12 +9,12 @@ import KeyboardContainer from '../../containers/keyboard';
 class Board extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <Subscribe to={[KeyboardContainer]}>
           {keyboard => <Background keyboard={keyboard} />}
         </Subscribe>
-        <Subscribe to={[AppContainer]}>{app => <Marker />}</Subscribe>
-      </div>
+        <Subscribe to={[AppContainer]}>{app => <Marker app={app} />}</Subscribe>
+      </Fragment>
     );
   }
 }
