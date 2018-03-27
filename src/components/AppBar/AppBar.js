@@ -18,11 +18,11 @@ export default class AppBar extends Component {
         flexDirection="column"
       >
         <Subscribe to={[PlayerContainer]}>
-          {app => (
+          {player => (
             <Fragment>
-              <Controls {...app} />
+              <Controls player={player} />
               <Subscribe to={[MidiContainer]}>
-                {midi => <Progress app={app} midi={midi} />}
+                {midi => <Progress midi={midi} player={player} />}
               </Subscribe>
             </Fragment>
           )}

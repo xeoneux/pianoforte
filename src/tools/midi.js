@@ -33,6 +33,5 @@ export const midiNotesMap = player => {
     });
   });
 
-  console.log(data);
   return data;
 };

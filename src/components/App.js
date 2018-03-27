@@ -30,8 +30,7 @@ export default class App extends Component {
 
     playerContainer.setState({
       totalTicks: midiPlayer.totalTicks,
-      totalTime: midiPlayer.getSongTime(),
-      notesMap: midiNotesMap(midiPlayer)
+      totalTime: midiPlayer.getSongTime()
     });
   }
 
