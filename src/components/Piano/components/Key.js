@@ -42,32 +42,23 @@ const StyledKey = Glamorous.div(
     transform: 'translate(0, 0) rotateX(0)',
     boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.3)'
   },
-  ({ type, index, active, keyboard, position }) => {
-    const totalKeys = keyboard.length;
-    const blackKeys = keyboard.filter(key => key.name.includes('#')).length;
-    const whiteKeys = totalKeys - blackKeys;
-    const keyWidth = 100 / whiteKeys;
-
-    return {
-      left:
-        type === 'white'
-          ? `${position * keyWidth}vw`
-          : `${(index - position - 1) * keyWidth +
-              (keyWidth - keyWidth * crossWidthRatio / 2)}vw`,
-      zIndex: type === 'white' ? 90 : 100,
-      background:
-        active === true
-          ? type === 'white' ? 'black' : 'white'
-          : type === 'white' ? 'white' : 'black',
-      transform: active === true ? 'rotateX(-1deg) scale(0.95)' : null,
-      width:
-        type === 'white' ? `${keyWidth}vw` : `${keyWidth * crossWidthRatio}vw`,
-      height:
-        type === 'white'
-          ? `${keyHeight}vh`
-          : `${keyHeight * crossHeightRatio}vh`
-    };
-  }
+  ({ type, index, active, keyWidth, position }) => ({
+    left:
+      type === 'white'
+        ? `${position * keyWidth}vw`
+        : `${(index - position - 1) * keyWidth +
+            (keyWidth - keyWidth * crossWidthRatio / 2)}vw`,
+    zIndex: type === 'white' ? 90 : 100,
+    background:
+      active === true
+        ? type === 'white' ? 'black' : 'white'
+        : type === 'white' ? 'white' : 'black',
+    transform: active === true ? 'rotateX(-1deg) scale(0.95)' : null,
+    width:
+      type === 'white' ? `${keyWidth}vw` : `${keyWidth * crossWidthRatio}vw`,
+    height:
+      type === 'white' ? `${keyHeight}vh` : `${keyHeight * crossHeightRatio}vh`
+  })
 );
 
 const StyledName = Glamorous.div({
