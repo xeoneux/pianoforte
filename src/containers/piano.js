@@ -1,6 +1,6 @@
 import { Container } from 'unstated';
 
-import { generateKeyboard, keyboardTypes } from '../tools/piano';
+import { generateKeyboard, keyboardTypes } from '../tools/keyboard';
 
 const keyboard = generateKeyboard(keyboardTypes.$61);
 

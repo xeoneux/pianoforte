@@ -17,7 +17,7 @@ const generateKeyboard = ({ startKey = 0, endKey = 127 } = {}) => {
     const name = notes[i % notes.length];
     const type = name.includes('#') ? 'black' : 'white';
     const position =
-      type === 'black' ? blackKeys.push(type) - 1 : whiteKeys.push(type) - 1;
+      type === 'black' ? blackKeys.push(name) - 1 : whiteKeys.push(name) - 1;
 
     keys.push({
       name,

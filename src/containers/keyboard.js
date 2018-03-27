@@ -1,6 +1,6 @@
 import { Container } from 'unstated';
 
-import { generateKeyboard, keyboardTypes } from '../tools/piano';
+import { generateKeyboard, keyboardTypes } from '../tools/keyboard';
 
 const keyboardState = type => {
   const keyboard = generateKeyboard(type);
@@ -13,8 +13,6 @@ const keyboardState = type => {
     postLines: keyboard.whiteKeys.filter(key => key === 'C').length
   };
 };
-
-const type = keyboardTypes.$61;
 
 export default class KeyboardContainer extends Container {
   state = keyboardState(keyboardTypes.$61);
