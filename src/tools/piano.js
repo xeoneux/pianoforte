@@ -1,6 +1,6 @@
 const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 
-const types = {
+const keyboardTypes = {
   49: { startKey: 36, endKey: 84 },
   54: { startKey: 36, endKey: 89 },
   61: { startKey: 36, endKey: 96 },
@@ -30,4 +30,4 @@ const generateKeyboard = ({ startKey = 0, endKey = 127 } = {}) => {
   return keys;
 };
 
-export { notes, types, generateKeyboard };
+export { notes, keyboardTypes, generateKeyboard };
