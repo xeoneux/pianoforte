@@ -15,7 +15,7 @@ class Board extends Component {
           {keyboard => <Background keyboard={keyboard} />}
         </Subscribe>
         <Subscribe to={[PlayerContainer, MidiContainer]}>
-          {(app, midi) => <Marker app={app} midi={midi} />}
+          {(player, midi) => <Marker player={player} midi={midi} />}
         </Subscribe>
       </Fragment>
     );
