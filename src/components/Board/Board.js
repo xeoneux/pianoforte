@@ -10,14 +10,18 @@ import MidiContainer from '../../containers/midi';
 class Board extends Component {
   render() {
     return (
-      <Fragment>
-        <Subscribe to={[KeyboardContainer]}>
-          {keyboard => <Background keyboard={keyboard} />}
-        </Subscribe>
-        <Subscribe to={[PlayerContainer, MidiContainer]}>
-          {(player, midi) => <Marker player={player} midi={midi} />}
-        </Subscribe>
-      </Fragment>
+      <Subscribe to={[KeyboardContainer]}>
+        {keyboard => (
+          <Fragment>
+            <Background keyboard={keyboard} />
+            <Subscribe to={[PlayerContainer, MidiContainer]}>
+              {(player, midi) => (
+                <Marker keyboard={keyboard} player={player} midi={midi} />
+              )}
+            </Subscribe>
+          </Fragment>
+        )}
+      </Subscribe>
     );
   }
 }

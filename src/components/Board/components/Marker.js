@@ -9,10 +9,15 @@ export default class Marker extends Component {
       <Div width="100%" height="100%" position="absolute">
         {this.props.midi.state.notesMap ? (
           <StyledRain percentage={this.props.player.state.markerPercentage}>
-            {this.props.midi.state.notesMap.forEach((track, index) => {
+            {this.props.midi.state.notesMap.map((track, index) => {
               const currentMeasure = this.props.player.state.currentMeasure;
               const measureData = track[currentMeasure];
-              console.log(measureData, index);
+              return Object.keys(measureData).map(keyNote => (
+                <StyledDrop
+                  keyNote={keyNote}
+                  keyWidth={this.props.keyboard.state.keyWidth}
+                />
+              ));
             })}
           </StyledRain>
         ) : null}
@@ -29,6 +34,19 @@ export default class Marker extends Component {
     );
   }
 }
+
+const StyledDrop = Glamorous.div(
+  {
+    zIndex: 150,
+    width: '10px',
+    height: '20px',
+    position: 'absolute',
+    backgroundColor: 'green'
+  },
+  ({ keyNote, keyWidth }) => ({
+    left: `${keyNote * keyWidth}vw`
+  })
+);
 
 const StyledRain = Glamorous.div(
   {
