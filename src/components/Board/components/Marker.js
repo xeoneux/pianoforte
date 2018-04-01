@@ -15,21 +15,25 @@ export default class Marker extends Component {
               const currentMeasure = this.props.player.state.currentMeasure;
               const measureData = track[currentMeasure];
               return Object.keys(measureData).map(keyNote =>
-                measureData[keyNote].map((ins, idx) => (
-                  <StyledDrop
-                    isWhite={
-                      !!this.props.keyboard.state.whites.find(
-                        key => key.note === keyNote
-                      )
-                    }
-                    stop={ins.to}
-                    start={ins.from}
-                    keyNote={keyNote}
-                    key={keyNote + idx}
-                    division={this.props.midi.state.division}
-                    keyWidth={this.props.keyboard.state.keyWidth}
-                  />
-                ))
+                measureData[keyNote].map((ins, idx) => {
+                  const keyData = this.props.keyboard.state.keys.find(
+                    key => key.note === +keyNote
+                  );
+                  return (
+                    <StyledDrop
+                      stop={ins.to}
+                      start={ins.from}
+                      key={keyNote + idx}
+                      type={keyData.type}
+                      position={keyData.position}
+                      division={this.props.midi.state.division}
+                      keyWidth={this.props.keyboard.state.keyWidth}
+                      index={this.props.keyboard.state.keys.findIndex(
+                        key => key.note === +keyNote
+                      )}
+                    />
+                  );
+                })
               );
             })}
           </StyledRain>
@@ -54,14 +58,17 @@ const StyledDrop = Glamorous.div(
     position: 'absolute',
     backgroundColor: 'green'
   },
-  ({ stop, start, division, isWhite, keyNote, keyWidth }) => ({
+  ({ type, stop, start, index, division, position, keyWidth }) => ({
     height: stop
       ? `${(stop - start) / (division * 4) * 100}%`
       : `${(division * 4 - start) / (division * 4) * 100}%`,
     width:
-      isWhite === true ? `${keyWidth}vw` : `${keyWidth * crossWidthRatio}vw`,
+      type === 'white' ? `${keyWidth}vw` : `${keyWidth * crossWidthRatio}vw`,
     left:
-      isWhite === true ? `${keyNote * keyWidth}vw` : `${keyNote * keyWidth}vw`
+      type === 'white'
+        ? `${position * keyWidth}vw`
+        : `${(index - position - 1) * keyWidth +
+            (keyWidth - keyWidth * crossWidthRatio / 2)}vw`
   })
 );
 
