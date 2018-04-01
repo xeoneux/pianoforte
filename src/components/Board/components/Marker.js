@@ -1,6 +1,8 @@
 import Glamorous, { Div } from 'glamorous';
 import React, { Component } from 'react';
 
+import { crossWidthRatio } from '../../../config/piano';
+
 export default class Marker extends Component {
   state = { currentBar: 0, markerPercentage: 25 };
 
@@ -14,6 +16,11 @@ export default class Marker extends Component {
               const measureData = track[currentMeasure];
               return Object.keys(measureData).map(keyNote => (
                 <StyledDrop
+                  isWhite={
+                    !!this.props.keyboard.state.whites.find(
+                      key => key.note === keyNote
+                    )
+                  }
                   keyNote={keyNote}
                   keyWidth={this.props.keyboard.state.keyWidth}
                 />
@@ -38,21 +45,21 @@ export default class Marker extends Component {
 const StyledDrop = Glamorous.div(
   {
     zIndex: 150,
-    width: '10px',
     height: '20px',
     position: 'absolute',
     backgroundColor: 'green'
   },
-  ({ keyNote, keyWidth }) => ({
+  ({ isWhite, keyNote, keyWidth }) => ({
+    width:
+      isWhite === true ? `${keyWidth}vw` : `${keyWidth * crossWidthRatio}vw`,
     left: `${keyNote * keyWidth}vw`
   })
 );
 
 const StyledRain = Glamorous.div(
   {
-    backgroundColor: 'red',
-    height: '280px',
     width: '100vw',
+    height: '280px',
     position: 'absolute'
   },
   ({ percentage }) => ({
