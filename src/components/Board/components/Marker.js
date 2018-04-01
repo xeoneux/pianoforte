@@ -64,6 +64,7 @@ const StyledDrop = Glamorous.div(
       : `${(division * 4 - start) / (division * 4) * 100}%`,
     width:
       type === 'white' ? `${keyWidth}vw` : `${keyWidth * crossWidthRatio}vw`,
+    bottom: `${start / (division * 4) * 100}%`,
     left:
       type === 'white'
         ? `${position * keyWidth}vw`
@@ -75,8 +76,9 @@ const StyledDrop = Glamorous.div(
 const StyledRain = Glamorous.div(
   {
     width: '100vw',
-    height: '280px',
-    position: 'absolute'
+    height: '300px',
+    position: 'absolute',
+    backgroundColor: 'blue'
   },
   ({ percentage }) => ({
     top: `${percentage}%`
