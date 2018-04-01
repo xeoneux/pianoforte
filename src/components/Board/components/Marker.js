@@ -14,17 +14,23 @@ export default class Marker extends Component {
             {this.props.midi.state.notesMap.map((track, index) => {
               const currentMeasure = this.props.player.state.currentMeasure;
               const measureData = track[currentMeasure];
-              return Object.keys(measureData).map(keyNote => (
-                <StyledDrop
-                  isWhite={
-                    !!this.props.keyboard.state.whites.find(
-                      key => key.note === keyNote
-                    )
-                  }
-                  keyNote={keyNote}
-                  keyWidth={this.props.keyboard.state.keyWidth}
-                />
-              ));
+              return Object.keys(measureData).map(keyNote =>
+                measureData[keyNote].map((ins, idx) => (
+                  <StyledDrop
+                    isWhite={
+                      !!this.props.keyboard.state.whites.find(
+                        key => key.note === keyNote
+                      )
+                    }
+                    stop={ins.to}
+                    start={ins.from}
+                    keyNote={keyNote}
+                    key={keyNote + idx}
+                    division={this.props.midi.state.division}
+                    keyWidth={this.props.keyboard.state.keyWidth}
+                  />
+                ))
+              );
             })}
           </StyledRain>
         ) : null}
@@ -45,14 +51,17 @@ export default class Marker extends Component {
 const StyledDrop = Glamorous.div(
   {
     zIndex: 150,
-    height: '20px',
     position: 'absolute',
     backgroundColor: 'green'
   },
-  ({ isWhite, keyNote, keyWidth }) => ({
+  ({ stop, start, division, isWhite, keyNote, keyWidth }) => ({
+    height: stop
+      ? `${(stop - start) / (division * 4) * 100}%`
+      : `${(division * 4 - start) / (division * 4) * 100}%`,
     width:
       isWhite === true ? `${keyWidth}vw` : `${keyWidth * crossWidthRatio}vw`,
-    left: `${keyNote * keyWidth}vw`
+    left:
+      isWhite === true ? `${keyNote * keyWidth}vw` : `${keyNote * keyWidth}vw`
   })
 );
 
