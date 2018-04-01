@@ -4,7 +4,7 @@ export const midiNotesMap = player => {
 
   const data = [];
   const events = player.getEvents();
-  const state = { start: 0, running: 1, end: 2 };
+  const state = { complete: 0, running: 1 };
 
   events.forEach((trackData, trackIndex) => {
     data.push([]);
@@ -18,17 +18,33 @@ export const midiNotesMap = player => {
       if (event.name === 'Note on' && event.velocity !== 0) {
         if (!selectedMeasure[event.noteNumber])
           selectedMeasure[event.noteNumber] = [];
-        selectedMeasure[event.noteNumber].push([
-          state.start,
-          event.tick,
-          event.velocity
-        ]);
+
+        selectedMeasure[event.noteNumber].push({
+          from: event.tick,
+          state: state.running,
+          velocity: event.velocity
+        });
       }
 
       if (event.name === 'Note off' || event.velocity === 0) {
         if (!selectedMeasure[event.noteNumber])
           selectedMeasure[event.noteNumber] = [];
-        selectedMeasure[event.noteNumber].push([state.end, event.tick]);
+
+        if (selectedMeasure[event.noteNumber].length) {
+          const runningNote = selectedMeasure[event.noteNumber].find(
+            note => note.state === state.running
+          );
+          if (runningNote) {
+            runningNote.to = event.tick;
+            runningNote.state = state.complete;
+          }
+        } else {
+          selectedMeasure[event.noteNumber].push({
+            to: event.tick,
+            state: state.complete,
+            velocity: event.velocity
+          });
+        }
       }
     });
   });
