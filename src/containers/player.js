@@ -19,6 +19,7 @@ export default class PlayerContainer extends Container {
     this.setState({
       currentMeasure,
       currentTick: player.tick,
+      markerPercentage: (player.tick % ppq) / ppq * 100,
       currentTime: ~~(player.getSongTime() - player.getSongTimeRemaining())
     });
   }
