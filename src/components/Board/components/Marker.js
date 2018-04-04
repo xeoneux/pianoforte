@@ -63,10 +63,10 @@ export default class Marker extends Component {
 const StyledDrop = Glamorous.div(
   {
     zIndex: 10,
-    position: 'absolute',
-    backgroundColor: 'green'
+    position: 'absolute'
   },
   ({ type, stop, start, index, division, position, keyWidth }) => ({
+    backgroundColor: type === 'white' ? 'green' : 'darkgreen',
     height: stop
       ? `${(stop - start) / (division * 4) * 100}%`
       : `${(division * 4 - start) / (division * 4) * 100}%`,
