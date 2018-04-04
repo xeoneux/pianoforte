@@ -2,14 +2,16 @@ import { Container } from 'unstated';
 
 export default class PlayerContainer extends Container {
   state = {
-    division: 0,
     measures: 1,
+    division: 0,
     totalTime: 0,
     totalTicks: 0,
     currentTime: 0,
     currentTick: 0,
+    currentTempo: 0,
     currentMeasure: 0,
-    markerPercentage: 0
+    markerPercentage: 0,
+    isPlayerRunning: false
   };
 
   setTimeUsing(player) {
