@@ -42,6 +42,7 @@
   "devDependencies": {
     "electron": "^1.8.4",
     "electron-builder": "^20.6.2",
+    "flow-bin": "^0.69.0",
     "gh-pages": "^1.1.0",
     "react-scripts": "^1.1.1"
   },
