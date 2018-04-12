@@ -1,3 +1,5 @@
+// @flow
+
 import { Div } from 'glamorous';
 import React, { PureComponent, Fragment } from 'react';
 import { Subscribe } from 'unstated';

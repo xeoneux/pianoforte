@@ -14,7 +14,7 @@ export default class PianoContainer extends Container<PianoState> {
   setupState(keys: Key[]) {
     const pianoKeys = {};
     keys.forEach(key => (pianoKeys[key.note] = false));
-    this.setState(...pianoKeys);
+    this.setState(pianoKeys);
   }
 
   toggle(note: number, active: boolean) {

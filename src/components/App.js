@@ -13,7 +13,7 @@ import { midiNotesMap } from '../tools/midi';
 import { headerHeight, contentHeight, footerHeight } from '../config/app';
 import { midiContainer } from '../containers/midi';
 
-export default class App extends Component {
+export default class App extends Component<{}> {
   setupEnvironment(result) {
     midiPlayer.loadArrayBuffer(result);
     getKeyRange(midiPlayer.getEvents());

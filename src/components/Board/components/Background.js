@@ -1,9 +1,30 @@
+// @flow
+
 import Glamorous, { Div } from 'glamorous';
 import React, { Component } from 'react';
 
 import { contentHeight } from '../../../config/app';
+import KeyboardContainer from '../../../containers/keyboard';
 
-export default class Background extends Component {
+type BackgroundProps = {
+  keyboard: KeyboardContainer
+};
+
+export default class Background extends Component<BackgroundProps> {
+  getLines(type: 'pre' | 'post') {
+    const whites = this.props.keyboard.state.whites;
+    return type === 'pre'
+      ? whites.filter(key => key.name === 'C').length
+      : whites.filter(key => key.name === 'F').length;
+  }
+
+  getInitCPos() {
+    const initialC = this.props.keyboard.state.keys.find(
+      key => key.name === 'C'
+    );
+    return initialC ? initialC.position : 0;
+  }
+
   render() {
     return (
       <Div
@@ -12,21 +33,21 @@ export default class Background extends Component {
         position="absolute"
         backgroundColor="#303030"
       >
-        {[...Array(this.props.keyboard.state.preLines)].map((_, i) => (
+        {[...Array(this.getLines('pre'))].map((_, i) => (
           <Line
             key={i}
             count={i}
             keyWidth={this.props.keyboard.state.keyWidth}
-            initialCPosition={this.props.keyboard.state.initialCPosition}
+            initialCPosition={this.getInitCPos()}
           />
         ))}
-        {[...Array(this.props.keyboard.state.postLines)].map((_, i) => (
+        {[...Array(this.getLines('post'))].map((_, i) => (
           <Line
             thin
             key={i}
             count={i}
             keyWidth={this.props.keyboard.state.keyWidth}
-            initialCPosition={this.props.keyboard.state.initialCPosition}
+            initialCPosition={this.getInitCPos()}
           />
         ))}
       </Div>
