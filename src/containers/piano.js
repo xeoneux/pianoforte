@@ -11,8 +11,8 @@ export default class PianoContainer extends Container {
   toggle(note, active) {
     this.setState({
       keys: this.state.keys.map(key => {
-        if (key.note === note) return Object.assign({}, key, { active });
-        return key;
+        if (key.note !== note) return key;
+        return Object.assign({}, key, { active });
       })
     });
   }

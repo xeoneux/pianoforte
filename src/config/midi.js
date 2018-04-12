@@ -1,6 +1,10 @@
+// @flow
+
 import instruments from '../resources/instruments';
 
-export const getInstrumentName = channel => {
+type Event = [{ noteNumber: ?number }];
+
+export const getInstrumentName = (channel: number) => {
   if (channel === 0) return instruments[1];
   let instrumentFound;
   Object.keys(instruments).forEach(instrument => {
@@ -9,7 +13,7 @@ export const getInstrumentName = channel => {
   return instrumentFound;
 };
 
-export const getKeyRange = events => {
+export const getKeyRange = (events: Event[]) => {
   let low, high;
   events.forEach(track => {
     if (track.length > 1) {
@@ -23,6 +27,9 @@ export const getKeyRange = events => {
       });
     }
   });
-  const range = high - low;
-  return { low, high, range };
+
+  if (low && high) {
+    const range = high - low;
+    return { low, high, range };
+  } else return { low: 0, high: 0, range: 0 };
 };

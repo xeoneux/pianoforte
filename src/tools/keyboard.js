@@ -1,19 +1,35 @@
-/* @flow */
+// @flow
 
-/*::
-type Black = "C#" | "D#" | "F#" | "G#" | "A#";
-type White = "C" | "D" | "E" | "F" | "G" | "A" | "B";
+export type Black = 'C#' | 'D#' | 'F#' | 'G#' | 'A#';
+export type White = 'C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B';
 
-type NoteName = Black | White;
-type NoteType = "black" | "white";
+export type NoteName = Black | White;
+export type NoteType = 'black' | 'white';
 
-type KeyboardType = { startKey: number, endKey: number };
-type Key = { name: NoteName, type: NoteType, note: number, position: number };
-*/
+export type KeyboardType = { startKey: number, endKey: number };
+export type Key = {
+  note: number,
+  name: NoteName,
+  type: NoteType,
+  position: number
+};
 
-const notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+export const notes: NoteName[] = [
+  'C',
+  'C#',
+  'D',
+  'D#',
+  'E',
+  'F',
+  'F#',
+  'G',
+  'G#',
+  'A',
+  'A#',
+  'B'
+];
 
-const keyboardTypes = {
+export const keyboardTypes = {
   $49: { startKey: 36, endKey: 84 },
   $54: { startKey: 36, endKey: 89 },
   $61: { startKey: 36, endKey: 96 },
@@ -21,27 +37,25 @@ const keyboardTypes = {
   $88: { startKey: 21, endKey: 108 }
 };
 
-const generateKeyboard = ({
+export const generateKeyboard = ({
   startKey = 0,
   endKey = 127
-} /* : KeyboardType */ = {}) => {
-  const keys /*: Key[] */ = [];
-  const blackKeys /*: Key[] */ = [];
-  const whiteKeys /*: Key[] */ = [];
+}: KeyboardType = {}) => {
+  const keys: Key[] = [];
+  const blackKeys: Key[] = [];
+  const whiteKeys: Key[] = [];
 
   for (let i = startKey; i <= endKey; i++) {
     const note = i;
     const name = notes[i % notes.length];
-    const type = name.includes("#") ? "black" : "white";
-    const position = type === "black" ? blackKeys.length : whiteKeys.length;
+    const type = name.includes('#') ? 'black' : 'white';
+    const position = type === 'black' ? blackKeys.length : whiteKeys.length;
 
     const key = { note, name, type, position };
 
     keys.push(key);
-    type === "black" ? blackKeys.push(key) : whiteKeys.push(key);
+    type === 'black' ? blackKeys.push(key) : whiteKeys.push(key);
   }
 
   return { keys, blackKeys, whiteKeys };
 };
-
-export { notes, keyboardTypes, generateKeyboard };

@@ -35,7 +35,7 @@ export default class App extends Component {
     });
   }
 
-  onDrop = (acceptedFiles, rejectedFiles) => {
+  onDrop = (acceptedFiles: File[], rejectedFiles: File[]) => {
     if (acceptedFiles.length) {
       const reader = new FileReader();
       reader.onload = () => this.setupEnvironment(reader.result);
