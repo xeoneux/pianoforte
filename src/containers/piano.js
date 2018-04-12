@@ -1,20 +1,26 @@
+// @flow
+
 import { Container } from 'unstated';
 
-export default class PianoContainer extends Container {
-  setupKeyStates({ startKey, endKey } = {}) {
-    const keys = [];
-    for (let i = startKey; i <= endKey; i++)
-      keys.push({ note: i, active: false });
-    this.setState({ keys });
+import type { Key } from '../tools/keyboard';
+
+export type PianoState = {
+  [note: number]: boolean
+};
+
+export default class PianoContainer extends Container<PianoState> {
+  state = {};
+
+  setupState(keys: Key[]) {
+    const pianoKeys = {};
+    keys.forEach(key => (pianoKeys[key.note] = false));
+    this.setState(...pianoKeys);
   }
 
-  toggle(note, active) {
-    this.setState({
-      keys: this.state.keys.map(key => {
-        if (key.note !== note) return key;
-        return Object.assign({}, key, { active });
-      })
-    });
+  toggle(note: number, active: boolean) {
+    const obj = {};
+    obj[note] = active;
+    this.setState(obj);
   }
 }
 

@@ -1,11 +1,15 @@
+// @flow
+
 import { Container } from 'unstated';
 
-import { generateKeyboard, keyboardTypes } from '../tools/keyboard';
 import { pianoContainer } from './piano';
+import { generateKeyboard, keyboardTypes } from '../tools/keyboard';
+
+import type { Key, KeyboardType } from '../tools/keyboard';
 
 const keyboardState = type => {
   const keyboard = generateKeyboard(type);
-  pianoContainer.setupKeyStates(type);
+  pianoContainer.setupState(keyboard.keys);
   return {
     type,
     keys: keyboard.keys,
@@ -14,16 +18,26 @@ const keyboardState = type => {
     keyWidth: 100 / keyboard.whiteKeys.length,
     preLines: keyboard.whiteKeys.filter(key => key.name === 'C').length,
     postLines: keyboard.whiteKeys.filter(key => key.name === 'F').length,
-    initialCPosition: keyboard.keys.find(key => key.name === 'C').position
+    initialCPosition: (() => {
+      const initialC = keyboard.keys.find(key => key.name === 'C');
+      if (initialC) return initialC.position;
+      return 0;
+    })()
   };
 };
 
-export default class KeyboardContainer extends Container {
-  state = keyboardState(keyboardTypes.$88);
+type KeyboardState = {
+  blacks: Key[],
+  whites: Key[],
+  keyWidth: number,
+  preLines: number,
+  postLines: number,
+  type: KeyboardType,
+  initialCPosition: number
+};
 
-  set keyboardType(type) {
-    this.setState(...keyboardState(type));
-  }
+export default class KeyboardContainer extends Container<KeyboardState> {
+  state = keyboardState(keyboardTypes.$88);
 }
 
 export const keyboardContainer = new KeyboardContainer();

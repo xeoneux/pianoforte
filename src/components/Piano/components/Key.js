@@ -9,11 +9,17 @@ import {
 
 export default class Key extends PureComponent {
   handleMouseUp = () => {
-    this.props.store.toggle(this.props.note, false);
+    if (this.props.store.state[this.props.note])
+      this.props.store.toggle(this.props.note, false);
   };
 
   handleMouseDown = () => {
-    this.props.store.toggle(this.props.note, true);
+    if (!this.props.store.state[this.props.note])
+      this.props.store.toggle(this.props.note, true);
+  };
+
+  handleMouseLeave = () => {
+    if (this.props.store.state[this.props.note]) this.handleMouseUp();
   };
 
   render() {
@@ -21,8 +27,8 @@ export default class Key extends PureComponent {
       <StyledKey
         {...this.props}
         onMouseUp={this.handleMouseUp}
-        onMouseLeave={this.handleMouseUp}
         onMouseDown={this.handleMouseDown}
+        onMouseLeave={this.handleMouseLeave}
       >
         <StyledName>{this.props.name}</StyledName>
       </StyledKey>
