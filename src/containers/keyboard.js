@@ -28,7 +28,7 @@ const keyboardState = (type): KeyboardState => {
 };
 
 export default class KeyboardContainer extends Container<KeyboardState> {
-  state = keyboardState(keyboardTypes.$88);
+  state: KeyboardState = keyboardState(keyboardTypes.$88);
 }
 
 export const keyboardContainer = new KeyboardContainer();

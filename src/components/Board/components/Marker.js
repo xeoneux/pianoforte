@@ -2,7 +2,7 @@ import Glamorous, { Div } from 'glamorous';
 import React, { Component } from 'react';
 
 import { contentHeight } from '../../../config/app';
-import { crossWidthRatio } from '../../../config/piano';
+import { crossWidthRatio } from '../../../config/keyboard';
 
 export default class Marker extends Component {
   state = { currentBar: 0, markerPercentage: 25 };
