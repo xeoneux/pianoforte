@@ -1,7 +1,22 @@
+// @flow
+
 import { Container } from 'unstated';
 
-export default class PlayerContainer extends Container {
-  state = {
+type PlayerState = {
+  measures: number,
+  division: number,
+  totalTime: number,
+  totalTicks: number,
+  currentTime: number,
+  currentTick: number,
+  currentTempo: number,
+  currentMeasure: number,
+  markerPercentage: number,
+  isPlayerRunning: boolean
+};
+
+export default class PlayerContainer extends Container<PlayerState> {
+  state: PlayerState = {
     measures: 1,
     division: 0,
     totalTime: 0,
@@ -13,18 +28,6 @@ export default class PlayerContainer extends Container {
     markerPercentage: 0,
     isPlayerRunning: false
   };
-
-  setTimeUsing(player) {
-    const ppq = player.division * 4;
-    const currentMeasure = ~~(player.tick / ppq);
-
-    this.setState({
-      currentMeasure,
-      currentTick: player.tick,
-      markerPercentage: (player.tick % ppq) / ppq * 100,
-      currentTime: ~~(player.getSongTime() - player.getSongTimeRemaining())
-    });
-  }
 }
 
 export const playerContainer = new PlayerContainer();
