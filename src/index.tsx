@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import { render } from 'react-dom';
 import { Provider } from 'unstated';
 
 import './index.css';
 
 import App from './components/App';
+import { keyboardContainer } from './containers/keyboard';
 import { midiContainer } from './containers/midi';
 import { pianoContainer } from './containers/piano';
 import { playerContainer } from './containers/player';
-import { keyboardContainer } from './containers/keyboard';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(
+render(
   <Provider
     inject={[midiContainer, pianoContainer, playerContainer, keyboardContainer]}
   >

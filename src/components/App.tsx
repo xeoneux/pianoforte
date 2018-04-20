@@ -1,20 +1,20 @@
 import { Div } from 'glamorous';
-import React, { Component } from 'react';
+import * as React from 'react';
 import Dropzone from 'react-dropzone';
 
 import AppBar from './AppBar/AppBar';
 import Board from './Board/Board';
 import Piano from './Piano/Piano';
-import { playerContainer } from '../containers/player';
 
 import { midiPlayer } from '../audio/player';
+import { contentHeight, footerHeight, headerHeight } from '../config/app';
 import { getKeyRange } from '../config/midi';
-import { midiNotesMap } from '../tools/midi';
-import { headerHeight, contentHeight, footerHeight } from '../config/app';
 import { midiContainer } from '../containers/midi';
+import { playerContainer } from '../containers/player';
+import { midiNotesMap } from '../tools/midi';
 
-export default class App extends Component<{}> {
-  setupEnvironment(result) {
+export default class App extends React.Component {
+  public setupEnvironment(result: ArrayBuffer) {
     midiPlayer.loadArrayBuffer(result);
     getKeyRange(midiPlayer.getEvents());
 
@@ -23,8 +23,8 @@ export default class App extends Component<{}> {
 
     midiContainer.setState({
       absoluteMeasures: measures,
-      measures: Math.ceil(measures),
       division: midiPlayer.division,
+      measures: Math.ceil(measures),
       notesMap: midiNotesMap(midiPlayer)
     });
 
@@ -35,18 +35,18 @@ export default class App extends Component<{}> {
     });
   }
 
-  onDrop = (acceptedFiles: File[], rejectedFiles: File[]) => {
+  public onDrop = (acceptedFiles: File[], rejectedFiles: File[]) => {
     if (acceptedFiles.length) {
       const reader = new FileReader();
       reader.onload = () => this.setupEnvironment(reader.result);
-      reader.onabort = () => console.log('file reading was aborted');
-      reader.onerror = () => console.log('file reading has failed');
+      reader.onabort = () => 'file reading was aborted';
+      reader.onerror = () => 'file reading has failed';
 
       reader.readAsArrayBuffer(acceptedFiles[0]);
     }
   };
 
-  render() {
+  public render() {
     return (
       <div>
         <Div height={`${headerHeight}vh`}>
@@ -54,7 +54,7 @@ export default class App extends Component<{}> {
         </Div>
         <Div height={`${contentHeight}vh`}>
           <Dropzone
-            disableClick
+            disableClick={true}
             onDrop={this.onDrop}
             style={{ width: '100%', height: '100%', position: 'relative' }}
           >
