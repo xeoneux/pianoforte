@@ -1,7 +1,5 @@
-// @flow
-
-import React, { PureComponent } from 'react';
 import Glamorous from 'glamorous';
+import * as React from 'react';
 
 import {
   keyHeight,
@@ -9,9 +7,9 @@ import {
   crossHeightRatio
 } from '../../../config/keyboard';
 import PianoContainer from '../../../containers/piano';
-import type { Key } from '../../../tools/keyboard';
+import { Key } from '../../../tools/keyboard';
 
-type PianoKeyProps = {
+interface IPianoKeyProps  {
   value: Key,
   index: number,
   active: boolean,

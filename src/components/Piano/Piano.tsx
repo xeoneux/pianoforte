@@ -1,20 +1,20 @@
 // @flow
 
 import { Div } from 'glamorous';
-import React, { PureComponent, Fragment } from 'react';
+import * as React from 'react';
 import { Subscribe } from 'unstated';
 
-import PianoKey from './components/PianoKey';
-import PianoContainer from '../../containers/piano';
 import KeyboardContainer from '../../containers/keyboard';
+import PianoContainer from '../../containers/piano';
+import PianoKey from './components/PianoKey';
 
-export default class Piano extends PureComponent<{}> {
-  render() {
+export default class Piano extends React.PureComponent {
+  public render() {
     return (
       <Div display="flex">
         <Subscribe to={[KeyboardContainer, PianoContainer]}>
           {(keyboard, piano) => (
-            <Fragment>
+            <React.Fragment>
               {keyboard.state.keys.map((value, index) => (
                 <PianoKey
                   value={value}
@@ -25,7 +25,7 @@ export default class Piano extends PureComponent<{}> {
                   keyWidth={keyboard.state.keyWidth}
                 />
               ))}
-            </Fragment>
+            </React.Fragment>
           )}
         </Subscribe>
       </Div>

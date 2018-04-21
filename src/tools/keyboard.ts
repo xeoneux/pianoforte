@@ -1,18 +1,20 @@
-// @flow
-
 export type Black = 'C#' | 'D#' | 'F#' | 'G#' | 'A#';
 export type White = 'C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B';
 
 export type NoteName = Black | White;
 export type NoteType = 'black' | 'white';
 
-export type KeyboardType = { startKey: number, endKey: number };
-export type Key = {
-  note: number,
-  name: NoteName,
-  type: NoteType,
-  position: number
-};
+export interface IKeyboardType {
+  startKey: number;
+  endKey: number;
+}
+
+export interface IKey {
+  note: number;
+  name: NoteName;
+  type: NoteType;
+  position: number;
+}
 
 export const notes: NoteName[] = [
   'C',
@@ -40,15 +42,15 @@ export const keyboardTypes = {
 export const generateKeyboard = ({
   startKey = 0,
   endKey = 127
-}: KeyboardType = {}) => {
-  const keys: Key[] = [];
-  const blackKeys: Key[] = [];
-  const whiteKeys: Key[] = [];
+}: IKeyboardType) => {
+  const keys: IKey[] = [];
+  const blackKeys: IKey[] = [];
+  const whiteKeys: IKey[] = [];
 
   for (let i = startKey; i <= endKey; i++) {
     const note = i;
     const name = notes[i % notes.length];
-    const type = name.includes('#') ? 'black' : 'white';
+    const type: NoteType = name.includes('#') ? 'black' : 'white';
     const position = type === 'black' ? blackKeys.length : whiteKeys.length;
 
     const key = { note, name, type, position };

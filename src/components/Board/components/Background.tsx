@@ -1,31 +1,29 @@
-// @flow
-
 import Glamorous, { Div } from 'glamorous';
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import { contentHeight } from '../../../config/app';
 import KeyboardContainer from '../../../containers/keyboard';
 
-type BackgroundProps = {
-  keyboard: KeyboardContainer
-};
+interface IBackgroundProps {
+  keyboard: KeyboardContainer;
+}
 
-export default class Background extends Component<BackgroundProps> {
-  getLines(type: 'pre' | 'post') {
+export default class Background extends React.Component<IBackgroundProps> {
+  public getLines(type: 'pre' | 'post') {
     const whites = this.props.keyboard.state.whites;
     return type === 'pre'
       ? whites.filter(key => key.name === 'C').length
       : whites.filter(key => key.name === 'F').length;
   }
 
-  getInitCPos() {
+  public getInitCPos() {
     const initialC = this.props.keyboard.state.keys.find(
       key => key.name === 'C'
     );
     return initialC ? initialC.position : 0;
   }
 
-  render() {
+  public render() {
     return (
       <Div
         width="100%"

@@ -1,23 +1,21 @@
-// @flow
-
 import { Container } from 'unstated';
 
-import type { Key } from '../tools/keyboard';
+import { IKey } from '../tools/keyboard';
 
-export type PianoState = {
-  [note: number]: boolean
-};
+export interface IPianoState {
+  [note: number]: boolean;
+}
 
-export default class PianoContainer extends Container<PianoState> {
-  state = {};
+export default class PianoContainer extends Container<IPianoState> {
+  public state = {};
 
-  setupState(keys: Key[]) {
+  public setupState(keys: IKey[]) {
     const pianoKeys = {};
     keys.forEach(key => (pianoKeys[key.note] = false));
     this.setState(pianoKeys);
   }
 
-  toggle(note: number, active: boolean) {
+  public toggle(note: number, active: boolean) {
     const obj = {};
     obj[note] = active;
     this.setState(obj);

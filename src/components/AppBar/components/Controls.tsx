@@ -1,14 +1,14 @@
 import FontAwesome from '@fortawesome/fontawesome';
 import { Div, I } from 'glamorous';
-import React, { Component } from 'react';
+import * as React from 'react';
 
-import faPlay from '@fortawesome/fontawesome-free-solid/faPlay';
 import faPause from '@fortawesome/fontawesome-free-solid/faPause';
-import faStepForward from '@fortawesome/fontawesome-free-solid/faStepForward';
+import faPlay from '@fortawesome/fontawesome-free-solid/faPlay';
 import faStepBackward from '@fortawesome/fontawesome-free-solid/faStepBackward';
+import faStepForward from '@fortawesome/fontawesome-free-solid/faStepForward';
 
-import { headerHeight } from '../../../config/app';
 import { midiPlayer } from '../../../audio/player';
+import { headerHeight } from '../../../config/app';
 import { playerContainer } from '../../../containers/player';
 import { play } from '../../../tools/player';
 
@@ -17,8 +17,8 @@ FontAwesome.library.add(faPause);
 FontAwesome.library.add(faStepForward);
 FontAwesome.library.add(faStepBackward);
 
-export default class Controls extends Component {
-  handleClick = event => {
+export default class Controls extends React.Component {
+  public handleClick = (event: React.MouseEvent) => {
     if (event.currentTarget) {
       // midiPlayer.play();
       play(midiPlayer.tempo, midiPlayer.division);
@@ -26,7 +26,7 @@ export default class Controls extends Component {
     }
   };
 
-  render() {
+  public render() {
     return (
       <Div
         height="50%"

@@ -1,14 +1,14 @@
 import { Div } from 'glamorous';
-import React, { Component, Fragment } from 'react';
+import * as React from 'react';
 import { Subscribe } from 'unstated';
 
+import MidiContainer from '../../containers/midi';
+import PlayerContainer from '../../containers/player';
 import Controls from './components/Controls';
 import Progress from './components/Progress';
-import PlayerContainer from '../../containers/player';
-import MidiContainer from '../../containers/midi';
 
-export default class AppBar extends Component {
-  render() {
+export default class AppBar extends React.Component {
+  public render() {
     return (
       <Div
         width="100%"
@@ -19,12 +19,12 @@ export default class AppBar extends Component {
       >
         <Subscribe to={[PlayerContainer]}>
           {player => (
-            <Fragment>
+            <React.Fragment>
               <Controls player={player} />
               <Subscribe to={[MidiContainer]}>
                 {midi => <Progress midi={midi} player={player} />}
               </Subscribe>
-            </Fragment>
+            </React.Fragment>
           )}
         </Subscribe>
       </Div>

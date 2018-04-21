@@ -1,4 +1,6 @@
-export const midiNotesMap = player => {
+import { Player } from 'midi-player-js';
+
+export const midiNotesMap = (player: Player) => {
   const division = player.division;
   const measure = division * 4;
 
