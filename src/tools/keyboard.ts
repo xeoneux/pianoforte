@@ -39,15 +39,12 @@ export const keyboardTypes = {
   $88: { startKey: 21, endKey: 108 }
 };
 
-export const generateKeyboard = ({
-  startKey = 0,
-  endKey = 127
-}: IKeyboardType) => {
+export const generateKeys = (keyboardType: IKeyboardType): IKey[] => {
   const keys: IKey[] = [];
   const blackKeys: IKey[] = [];
   const whiteKeys: IKey[] = [];
 
-  for (let i = startKey; i <= endKey; i++) {
+  for (let i = keyboardType.startKey; i <= keyboardType.endKey; i++) {
     const note = i;
     const name = notes[i % notes.length];
     const type: NoteType = name.includes('#') ? 'black' : 'white';
@@ -59,5 +56,5 @@ export const generateKeyboard = ({
     type === 'black' ? blackKeys.push(key) : whiteKeys.push(key);
   }
 
-  return { keys, blackKeys, whiteKeys };
+  return keys;
 };
