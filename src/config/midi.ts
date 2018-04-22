@@ -1,35 +1,40 @@
-// @flow
-
-import instruments from '../resources/instruments';
-
-type Event = [{ noteNumber: ?number }];
+import { Note } from 'midiate/build/main/tools/Notes';
+import instruments from '../resources/instruments.json';
 
 export const getInstrumentName = (channel: number) => {
-  if (channel === 0) return instruments[1];
+  if (channel === 0) {
+    return instruments[1];
+  }
+
   let instrumentFound;
   Object.keys(instruments).forEach(instrument => {
-    if (instruments[instrument] === channel) instrumentFound = instrument;
+    if (instruments[instrument] === channel) {
+      instrumentFound = instrument;
+    }
   });
   return instrumentFound;
 };
 
-export const getKeyRange = (events: Event[]) => {
-  let low, high;
-  events.forEach(track => {
-    if (track.length > 1) {
-      track.forEach(note => {
-        if (note.noteNumber) {
-          if (!low) low = note.noteNumber;
-          if (!high) high = note.noteNumber;
-          if (note.noteNumber < low) low = note.noteNumber;
-          if (note.noteNumber > high) high = note.noteNumber;
-        }
-      });
-    }
+export const getKeyRange = (notes: Note[][]) => {
+  let low: number;
+  let high: number;
+  notes.forEach(track => {
+    track.forEach(note => {
+      if (!low) {
+        low = note.value;
+      }
+      if (!high) {
+        high = note.value;
+      }
+      if (note.value < low) {
+        low = note.value;
+      }
+      if (note.value > high) {
+        high = note.value;
+      }
+    });
   });
 
-  if (low && high) {
-    const range = high - low;
-    return { low, high, range };
-  } else return { low: 0, high: 0, range: 0 };
+  const range = high! - low!;
+  return { low: low!, high: high!, range };
 };

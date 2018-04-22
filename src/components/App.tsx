@@ -1,4 +1,5 @@
 import { Div } from 'glamorous';
+import { Midiate } from 'midiate';
 import * as React from 'react';
 import Dropzone from 'react-dropzone';
 
@@ -6,32 +7,23 @@ import AppBar from './AppBar/AppBar';
 import Board from './Board/Board';
 import Piano from './Piano/Piano';
 
-import { midiPlayer } from '../audio/player';
 import { contentHeight, footerHeight, headerHeight } from '../config/app';
 import { getKeyRange } from '../config/midi';
 import { midiContainer } from '../containers/midi';
 import { playerContainer } from '../containers/player';
-import { midiNotesMap } from '../tools/midi';
 
 export default class App extends React.Component {
   public setupEnvironment(result: ArrayBuffer) {
-    midiPlayer.loadArrayBuffer(result);
-    getKeyRange(midiPlayer.getEvents());
-
-    const ppq = midiPlayer.division * 4;
-    const measures = midiPlayer.totalTicks / ppq;
+    const midiate = new Midiate(result);
+    getKeyRange(midiate.notes);
 
     midiContainer.setState({
-      absoluteMeasures: measures,
-      division: midiPlayer.division,
-      measures: Math.ceil(measures),
-      notesMap: midiNotesMap(midiPlayer)
+      division: midiate.division,
+      measures: midiate.measures
     });
 
     playerContainer.setState({
-      currentTempo: midiPlayer.tempo,
-      totalTicks: midiPlayer.totalTicks,
-      totalTime: Math.ceil(midiPlayer.getSongTime())
+      totalTicks: midiate.measures[midiate.measures.length - 1].to
     });
   }
 
