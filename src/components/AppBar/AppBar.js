@@ -8,7 +8,7 @@ import Controls from './components/Controls';
 import Progress from './components/Progress';
 
 export default class AppBar extends React.Component {
-  public render() {
+  render() {
     return (
       <Div
         width="100%"

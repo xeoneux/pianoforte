@@ -8,7 +8,7 @@ import Background from './components/Background';
 import Marker from './components/Marker';
 
 class Board extends React.Component {
-  public render() {
+   render() {
     return (
       <Subscribe to={[KeyboardContainer]}>
         {keyboard => (

@@ -13,7 +13,7 @@ import { midiContainer } from '../containers/midi';
 import { playerContainer } from '../containers/player';
 
 export default class App extends React.Component {
-  public setupEnvironment(result: ArrayBuffer) {
+  setupEnvironment(result) {
     const midiate = new Midiate(result);
     getKeyRange(midiate.notes);
 
@@ -27,7 +27,7 @@ export default class App extends React.Component {
     });
   }
 
-  public onDrop = (acceptedFiles: File[], rejectedFiles: File[]) => {
+  onDrop = (acceptedFiles, rejectedFiles) => {
     if (acceptedFiles.length) {
       const reader = new FileReader();
       reader.onload = () => this.setupEnvironment(reader.result);
@@ -38,7 +38,7 @@ export default class App extends React.Component {
     }
   };
 
-  public render() {
+  render() {
     return (
       <div>
         <Div height={`${headerHeight}vh`}>

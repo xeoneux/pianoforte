@@ -1,7 +1,7 @@
 import { Note } from 'midiate/build/main/tools/Notes';
 import instruments from '../resources/instruments.json';
 
-export const getInstrumentName = (channel: number) => {
+export const getInstrumentName = channel => {
   if (channel === 0) {
     return instruments[1];
   }
@@ -15,9 +15,9 @@ export const getInstrumentName = (channel: number) => {
   return instrumentFound;
 };
 
-export const getKeyRange = (notes: Note[][]) => {
-  let low: number;
-  let high: number;
+export const getKeyRange = notes => {
+  let low;
+  let high;
   notes.forEach(track => {
     track.forEach(note => {
       if (!low) {
@@ -35,6 +35,6 @@ export const getKeyRange = (notes: Note[][]) => {
     });
   });
 
-  const range = high! - low!;
-  return { low: low!, high: high!, range };
+  const range = high - low;
+  return { low, high, range };
 };

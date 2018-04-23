@@ -9,7 +9,7 @@ import PianoContainer from '../../containers/piano';
 import PianoKey from './components/PianoKey';
 
 export default class Piano extends React.PureComponent {
-  public render() {
+  render() {
     return (
       <Div display="flex">
         <Subscribe to={[KeyboardContainer, PianoContainer]}>
