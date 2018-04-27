@@ -25,5 +25,5 @@ export const generateKeys = keyboardType => {
     type === 'black' ? blackKeys.push(key) : whiteKeys.push(key);
   }
 
-  return keys;
+  return { keys, blackKeys, whiteKeys };
 };

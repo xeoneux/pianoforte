@@ -5,9 +5,9 @@ import { contentHeight } from '../../../config/app';
 import { crossWidthRatio } from '../../../config/keyboard';
 
 export default class Marker extends React.Component {
-  public state = { currentBar: 0, markerPercentage: 25 };
+  state = { currentBar: 0, markerPercentage: 25 };
 
-  public render() {
+  render() {
     return (
       <Div
         width="100%"
@@ -63,7 +63,7 @@ export default class Marker extends React.Component {
 const StyledDrop = Glamorous.div(
   {
     position: 'absolute',
-    zIndex: 10,
+    zIndex: 10
   },
   ({ type, stop, start, index, division, position, keyWidth }) => ({
     backgroundColor: type === 'white' ? 'green' : 'darkgreen',

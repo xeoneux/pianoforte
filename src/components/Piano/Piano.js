@@ -21,8 +21,8 @@ export default class Piano extends React.PureComponent {
                   index={index}
                   piano={piano}
                   key={value.note}
-                  active={piano.state[value.note]}
-                  keyWidth={keyboard.state.keyWidth}
+                  keyboard={keyboard}
+                  state={piano.state[value.note]}
                 />
               ))}
             </React.Fragment>

@@ -1,45 +1,36 @@
+import React from 'react';
 import Glamorous from 'glamorous';
-import * as React from 'react';
 
 import {
   keyHeight,
   crossWidthRatio,
   crossHeightRatio
 } from '../../../config/keyboard';
-import PianoContainer from '../../../containers/piano';
-import { Key } from '../../../tools/keyboard';
 
-interface IPianoKeyProps  {
-  value: Key,
-  index: number,
-  active: boolean,
-  keyWidth: number,
-  piano: PianoContainer
-};
-
-export default class PianoKey extends PureComponent<PianoKeyProps> {
+export default class PianoKey extends React.PureComponent {
   handleMouseUp = () => {
-    if (this.props.piano.state[this.props.value.note])
-      this.props.piano.toggle(this.props.value.note, false);
+    if (this.props.piano.state[this.props.value.note].active)
+      this.props.piano.toggle(this.props.value.note, 'null', false);
   };
 
   handleMouseDown = () => {
-    if (!this.props.piano.state[this.props.value.note])
-      this.props.piano.toggle(this.props.value.note, true);
+    if (!this.props.piano.state[this.props.value.note].active)
+      this.props.piano.toggle(this.props.value.note, 'null', true);
   };
 
   handleMouseLeave = () => {
-    if (this.props.piano.state[this.props.value.note]) this.handleMouseUp();
+    if (this.props.piano.state[this.props.value.note].active)
+      this.handleMouseUp();
   };
 
   render() {
     return (
       <StyledKey
         {...this.props}
-        keyWidth={this.props.keyWidth}
         onMouseUp={this.handleMouseUp}
         onMouseDown={this.handleMouseDown}
         onMouseLeave={this.handleMouseLeave}
+        keyWidth={100 / this.props.keyboard.state.whiteKeys.length}
       >
         <StyledName>{this.props.value.name}</StyledName>
       </StyledKey>
@@ -59,7 +50,7 @@ const StyledKey = Glamorous.div(
     transform: 'translate(0, 0) rotateX(0)',
     boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.3)'
   },
-  ({ value, index, active, keyWidth }) => ({
+  ({ value, index, state, keyWidth }) => ({
     left:
       value.type === 'white'
         ? `${value.position * keyWidth}vw`
@@ -67,14 +58,14 @@ const StyledKey = Glamorous.div(
             (keyWidth - keyWidth * crossWidthRatio / 2)}vw`,
     zIndex: value.type === 'white' ? 90 : 100,
     background:
-      active === true
+      state.active === true
         ? value.type === 'white'
           ? 'black'
           : 'white'
         : value.type === 'white'
           ? 'white'
           : 'black',
-    transform: active === true ? 'rotateX(-1deg) scale(0.95)' : null,
+    transform: state.active === true ? 'rotateX(-1deg) scale(0.95)' : null,
     width:
       value.type === 'white'
         ? `${keyWidth}vw`

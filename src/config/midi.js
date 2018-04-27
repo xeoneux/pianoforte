@@ -1,4 +1,3 @@
-import { Note } from 'midiate/build/main/tools/Notes';
 import instruments from '../resources/instruments.json';
 
 export const getInstrumentName = channel => {

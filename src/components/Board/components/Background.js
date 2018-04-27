@@ -1,29 +1,24 @@
+import React from 'react';
 import Glamorous, { Div } from 'glamorous';
-import * as React from 'react';
 
 import { contentHeight } from '../../../config/app';
-import KeyboardContainer from '../../../containers/keyboard';
 
-interface IBackgroundProps {
-  keyboard: KeyboardContainer;
-}
-
-export default class Background extends React.Component<IBackgroundProps> {
-  public getLines(type: 'pre' | 'post') {
-    const whites = this.props.keyboard.state.whites;
+export default class Background extends React.Component {
+  getLines(type) {
+    const whites = this.props.keyboard.state.whiteKeys;
     return type === 'pre'
       ? whites.filter(key => key.name === 'C').length
       : whites.filter(key => key.name === 'F').length;
   }
 
-  public getInitCPos() {
+  getInitCPos() {
     const initialC = this.props.keyboard.state.keys.find(
       key => key.name === 'C'
     );
     return initialC ? initialC.position : 0;
   }
 
-  public render() {
+  render() {
     return (
       <Div
         width="100%"
@@ -35,7 +30,7 @@ export default class Background extends React.Component<IBackgroundProps> {
           <Line
             key={i}
             count={i}
-            keyWidth={this.props.keyboard.state.keyWidth}
+            keyWidth={100 / this.props.keyboard.state.whiteKeys.length}
             initialCPosition={this.getInitCPos()}
           />
         ))}
@@ -44,7 +39,7 @@ export default class Background extends React.Component<IBackgroundProps> {
             thin
             key={i}
             count={i}
-            keyWidth={this.props.keyboard.state.keyWidth}
+            keyWidth={100 / this.props.keyboard.state.whiteKeys.length}
             initialCPosition={this.getInitCPos()}
           />
         ))}

@@ -18,7 +18,7 @@ FontAwesome.library.add(faStepForward);
 FontAwesome.library.add(faStepBackward);
 
 export default class Controls extends React.Component {
-  public handleClick = (event: React.MouseEvent) => {
+  handleClick = event => {
     if (event.currentTarget) {
       // midiPlayer.play();
       play(midiPlayer.tempo, midiPlayer.division);
@@ -26,7 +26,7 @@ export default class Controls extends React.Component {
     }
   };
 
-  public render() {
+  render() {
     return (
       <Div
         height="50%"

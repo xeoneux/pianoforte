@@ -1,22 +1,15 @@
 import { Container } from 'unstated';
 
-import {
-  generateKeys,
-  IKey,
-  IKeyboardType,
-  keyboardTypes
-} from '../tools/keyboard';
 import { pianoContainer } from './piano';
-
-const setInitialState = () => {
-  const type = keyboardTypes.$88;
-  const keys = generateKeys(type);
-  pianoContainer.setupState(keys);
-  return { keys, type };
-};
+import { generateKeys, keyboardTypes } from '../tools/keyboard';
 
 export default class KeyboardContainer extends Container {
-  state = setInitialState();
+  state = (() => {
+    const type = keyboardTypes.$88;
+    const { keys, blackKeys, whiteKeys } = generateKeys(type);
+    pianoContainer.setupState(keys);
+    return { type, keys, blackKeys, whiteKeys };
+  })();
 }
 
 export const keyboardContainer = new KeyboardContainer();

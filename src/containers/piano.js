@@ -1,19 +1,25 @@
 import { Container } from 'unstated';
 
-import { IKey } from '../tools/keyboard';
-
 export default class PianoContainer extends Container {
   state = {};
 
   setupState(keys) {
     const pianoKeys = {};
-    keys.forEach(key => (pianoKeys[key.note] = false));
+    keys.forEach(key => {
+      pianoKeys[key.note] = {
+        color: 'grey',
+        active: false
+      };
+    });
     this.setState(pianoKeys);
   }
 
-  toggle(note, active) {
+  toggle(note, color, active) {
     const obj = {};
-    obj[note] = active;
+    obj[note] = Object.assign({}, obj[note], {
+      color,
+      active
+    });
     this.setState(obj);
   }
 }

@@ -2,9 +2,9 @@ import { playerContainer } from '../containers/player';
 
 const sampleRate = 40;
 
-export let intervalId: NodeJS.Timer;
+export let intervalId;
 
-export const play = (tempo: number, division: number) => {
+export const play = (tempo, division) => {
   const ticksToProcess = tempo * division / 60000 * sampleRate;
 
   intervalId = setInterval(() => {
