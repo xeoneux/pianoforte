@@ -1,6 +1,6 @@
 <h1 align="center">
     <br>
-    <a href="https://github.com/xeoneux/pianoforte">
+    <a href="https://github.com/procliveteem/pianoforte">
       <img src="./assets/icons/256x256.png" alt="Pianoforte" width="180" style="margin-bottom: 1rem">
     </a>
     <br> Pianoforte
@@ -22,12 +22,12 @@
   
   <div align="center">
     <!-- Release Version -->
-    <a href="https://github.com/xeoneux/pianoforte/releases">
-      <img src="https://img.shields.io/github/release/xeoneux/pianoforte.svg?style=for-the-badge" alt="GitHub Release" />
+    <a href="https://github.com/procliveteem/pianoforte/releases">
+      <img src="https://img.shields.io/github/release/procliveteem/pianoforte.svg?style=for-the-badge" alt="GitHub Release" />
     </a>
     <!-- Total Downloads -->
     <a href="https://codecov.io/github/choojs/choo">
-      <img src="https://img.shields.io/github/downloads/xeoneux/pianoforte/total.svg?style=for-the-badge" alt="Downloads" />
+      <img src="https://img.shields.io/github/downloads/procliveteem/pianoforte/total.svg?style=for-the-badge" alt="Downloads" />
     </a>
     <!-- Code Style -->
     <a href="https://github.com/prettier/prettier">
@@ -37,11 +37,11 @@
   
   <div align="center">
     <h3>
-      <a href="https://xeoneux.github.io/pianoforte">
+      <a href="https://procliveteem.github.io/pianoforte">
         Website
       </a>
       <span> | </span>
-      <a href="https://github.com/xeoneux/pianoforte/releases">
+      <a href="https://github.com/procliveteem/pianoforte/releases">
         Download
       </a>
     </h3>
@@ -50,7 +50,7 @@
   <div align="center">
     <sub>Built with ❤︎ by
       <a href="https://github.com/xeoneux">Aayush Kapoor</a> and
-      <a href="https://github.com/xeoneux/pianoforte/graphs/contributors">
+      <a href="https://github.com/procliveteem/pianoforte/graphs/contributors">
         contributors
       </a>
   </div>
