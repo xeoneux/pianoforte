@@ -23,7 +23,7 @@
   <div align="center">
     <!-- Release Version -->
     <a href="https://github.com/procliveteem/pianoforte/releases">
-      <img src="https://img.shields.io/github/release/procliveteem/pianoforte.svg?style=for-the-badge" alt="GitHub Release" />
+      <img src="https://img.shields.io/github/release-pre/procliveteem/pianoforte.svg?style=for-the-badge" alt="GitHub Release" />
     </a>
     <!-- Total Downloads -->
     <a href="https://codecov.io/github/choojs/choo">
