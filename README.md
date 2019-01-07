@@ -22,8 +22,8 @@
   
   <div align="center">
     <!-- License -->
-    <a href="https://github.com/provliveteem/pianoforte/releases">
-      <img src="https://img.shields.io/github/license/:user/:repo.svg?style=for-the-badge"alt="Licensed under the MIT license" />
+    <a href="https://github.com/procliveteem/pianoforte/releases">
+      <img src="https://img.shields.io/github/license/procliveteem/pianoforte.svg?style=for-the-badge"alt="Licensed under the MIT license" />
     </a>
     <!-- Release Version -->
     <a href="https://github.com/procliveteem/pianoforte/releases">
