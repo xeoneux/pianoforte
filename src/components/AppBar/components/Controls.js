@@ -1,21 +1,11 @@
-import FontAwesome from '@fortawesome/fontawesome';
-import { Div, I } from 'glamorous';
+import 'boxicons';
+import { Div } from 'glamorous';
 import * as React from 'react';
-
-import faPause from '@fortawesome/fontawesome-free-solid/faPause';
-import faPlay from '@fortawesome/fontawesome-free-solid/faPlay';
-import faStepBackward from '@fortawesome/fontawesome-free-solid/faStepBackward';
-import faStepForward from '@fortawesome/fontawesome-free-solid/faStepForward';
 
 import { midiPlayer } from '../../../audio/player';
 import { headerHeight } from '../../../config/app';
 import { playerContainer } from '../../../containers/player';
 import { play } from '../../../tools/player';
-
-FontAwesome.library.add(faPlay);
-FontAwesome.library.add(faPause);
-FontAwesome.library.add(faStepForward);
-FontAwesome.library.add(faStepBackward);
 
 export default class Controls extends React.Component {
   handleClick = event => {
@@ -36,19 +26,10 @@ export default class Controls extends React.Component {
         onClick={this.handleClick}
         justifyContent="space-around"
       >
-        {[
-          'fas fa-play',
-          'fas fa-pause',
-          'fas fa-step-forward',
-          'fas fa-step-backward'
-        ].map((c, i) => (
-          <I
-            key={i}
-            className={c}
-            color="white"
-            fontSize={`${headerHeight / 3}vh`}
-          />
-        ))}
+        <box-icon name="play" color="white" size={`${headerHeight / 3}vh`}></box-icon>
+        <box-icon name="pause" color="white" size={`${headerHeight / 3}vh`}></box-icon>
+        <box-icon name="skip-next" color="white" size={`${headerHeight / 3}vh`}></box-icon>
+        <box-icon name="skip-previous" color="white" size={`${headerHeight / 3}vh`}></box-icon>
       </Div>
     );
   }

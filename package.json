@@ -15,10 +15,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.4",
-    "@fortawesome/fontawesome-free-brands": "^5.0.8",
-    "@fortawesome/fontawesome-free-regular": "^5.0.8",
-    "@fortawesome/fontawesome-free-solid": "^5.0.8",
+    "boxicons": "^1.8.1",
     "electron-is-dev": "^0.3.0",
     "glamor": "^2.20.40",
     "glamorous": "^4.12.1",
