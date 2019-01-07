@@ -21,6 +21,10 @@
   <br>
   
   <div align="center">
+    <!-- Discord -->
+    <a href="https://discord.gg/gtgtvnQ">
+        <img src="https://img.shields.io/badge/Chat%20with%20Us-Discord-blue.svg?logo=discord&style=for-the-badge" alt="Join us on Discord" />
+    </a>
     <!-- License -->
     <a href="https://github.com/procliveteem/pianoforte/releases">
       <img src="https://img.shields.io/github/license/procliveteem/pianoforte.svg?style=for-the-badge" alt="Licensed under the MIT license" />
